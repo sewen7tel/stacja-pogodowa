@@ -50,7 +50,9 @@ jobs:
           ECOWITT_API_KEY: ${{ secrets.ECOWITT_API_KEY }}
           ECOWITT_MAC: ${{ secrets.ECOWITT_MAC }}
           STACJA_NAZWA: ${{ vars.STACJA_NAZWA || 'Stacja pogodowa – Szczecin' }}
-        run: python stacja_pogodowa.py --publiczny --wyjscie strona/index.html || echo "::warning::Synchronizacja zakończona z błędami – szczegóły w logu"
+        run: |
+          python stacja_pogodowa.py --publiczny --wyjscie strona/index.html || echo "::warning::Synchronizacja zakończona z błędami – szczegóły w logu"
+          echo "----- ostatnie wpisy logu -----"; tail -n 40 dane/log.txt || true
 
       - name: Zapisz archiwum (gałąź „dane”, zawsze jeden commit)
         if: always()
@@ -62,7 +64,7 @@ jobs:
           cd "$tmp"
           git init -q -b dane
           git add -A
-          git commit -qm "Archiwum $(date -u +%Y-%m-%dT%H:%MZ)"
+          git -c user.name="stacja-bot" -c user.email="stacja-bot@users.noreply.github.com" commit -qm "Archiwum $(date -u +%Y-%m-%dT%H:%MZ)"
           git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" dane
 
       - name: Podtrzymanie harmonogramu (GitHub wyłącza go po 60 dniach bez commitów)
