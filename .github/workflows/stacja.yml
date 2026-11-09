@@ -51,14 +51,25 @@ jobs:
           ECOWITT_MAC: ${{ secrets.ECOWITT_MAC }}
           STACJA_NAZWA: ${{ vars.STACJA_NAZWA || 'Stacja pogodowa – Szczecin' }}
         run: |
-          python stacja_pogodowa.py --publiczny --wyjscie strona/index.html || echo "::warning::Synchronizacja zakończona z błędami – szczegóły w logu"
-          echo "----- ostatnie wpisy logu -----"; tail -n 40 dane/log.txt || true
+          for n in ECOWITT_APP_KEY ECOWITT_API_KEY ECOWITT_MAC; do
+            [ -n "${!n}" ] || echo "::error::Brak sekretu $n (Settings → Secrets and variables → Actions)"
+          done
+          set +e
+          python stacja_pogodowa.py --publiczny --wyjscie strona/index.html > wynik.txt 2>&1
+          kod=$?
+          cat wynik.txt
+          if [ $kod -ne 0 ]; then
+            grep -E "BŁĄD|Error|błąd|Brak|Uzupełnij" wynik.txt | tail -n 5 | while IFS= read -r l; do echo "::warning::$l"; done
+            tail -n 3 wynik.txt | while IFS= read -r l; do echo "::warning::$l"; done
+          fi
+          exit 0
 
       - name: Zapisz archiwum (gałąź „dane”, zawsze jeden commit)
         if: always()
         run: |
           git config user.name "stacja-bot"
           git config user.email "stacja-bot@users.noreply.github.com"
+          if [ ! -f dane/archiwum.sqlite ]; then echo "::warning::Brak archiwum do zapisania"; exit 0; fi
           tmp=$(mktemp -d)
           cp -r dane "$tmp/"
           cd "$tmp"
@@ -74,6 +85,9 @@ jobs:
             git commit --allow-empty -qm "Podtrzymanie harmonogramu"
             git push -q origin HEAD:main
           fi
+
+      - name: Sprawdź, czy strona powstała
+        run: test -f strona/index.html || { echo "::error::Nie powstał dashboard – zobacz ostrzeżenia powyżej"; exit 1; }
 
       - uses: actions/upload-pages-artifact@v3
         with:
