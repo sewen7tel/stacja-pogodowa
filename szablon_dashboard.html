@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stacja pogodowa</title>
+<style>
+:root{--bg:#0b0b0b;--panel:#1d1d1d;--panel2:#242424;--line:#2f2f2f;--fg:#ecebe8;--muted:#9b978f;--blue:#3b8eea;--orange:#e0a21c;--red:#c9533f;--warm:#c9533f;--cold:#3f73c9;--brown:#7a5418;--serif:Georgia,"Times New Roman",serif;--sans:"Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 var(--sans)}
+.wrap{max-width:1320px;margin:0 auto;padding:24px 20px 60px}
+h1{font:600 26px var(--sans);margin:0 0 4px}
+h2{font:600 17px var(--sans);margin:0 0 8px}
+.sub,.opis{color:var(--muted);font-size:12.5px;margin:0 0 12px}
+.status{border:1px solid #c98a12;border-radius:8px;padding:10px 14px;margin:16px 0 24px;font-size:12.5px;background:#141006}
+.status.ok{border-color:var(--line);background:var(--panel)}
+.status b{color:var(--fg)}.status .meta{color:var(--muted);margin-left:6px}
+.status .warn{color:#f0a020;margin-top:4px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#e0a21c;margin-right:6px}
+.status.ok .dot{background:#4caf50}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-bottom:28px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 16px;min-height:120px}
+.tile .lab{color:var(--muted);font-size:12.5px}
+.tile .val{font:400 32px var(--serif);margin:6px 0 8px;white-space:nowrap}
+.tile .val small{font:13px var(--sans);color:var(--muted);margin-left:3px}
+.tile .det{color:var(--muted);font-size:12.5px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 18px 16px;margin-bottom:24px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.grid2 .card,.grid3 .card{margin-bottom:0}
+.sec{margin-bottom:24px}
+.controls{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;margin-bottom:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.seg button{background:transparent;color:var(--muted);border:0;border-right:1px solid var(--line);padding:6px 12px;font:13px var(--sans);cursor:pointer}
+.seg button:last-child{border-right:0}
+.seg button.on{background:#f3f2ef;color:#111}
+.chips{display:inline-flex;gap:6px;flex-wrap:wrap}
+.chips button{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:14px;padding:4px 14px;font:13px var(--sans);cursor:pointer}
+.chips button.on{background:#f3f2ef;color:#111}
+.daty{display:inline-flex;gap:8px;align-items:center;color:var(--muted);font-size:13px}
+.daty input{background:var(--panel2);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:4px 6px;font:13px var(--sans);color-scheme:dark}
+.daty button{background:transparent;color:var(--fg);border:1px solid var(--line);border-radius:6px;width:28px;height:28px;cursor:pointer}
+.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12.5px;margin:4px 0 6px}
+.legend i{display:inline-block;width:12px;height:3px;vertical-align:middle;margin-right:6px;border-radius:2px}
+.chart svg{display:block;overflow:visible}
+.grid{stroke:#2c2c2c;stroke-width:1}
+.ax{fill:#8f8b84;font:11px var(--sans)}
+.zero{stroke:#777;stroke-width:1}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{color:var(--muted);font-weight:500;text-align:right;padding:6px 10px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel)}
+td{text-align:right;padding:6px 10px;border-bottom:1px solid #262626}
+th:first-child,td:first-child{text-align:left}
+td b{font-weight:600}
+.scroll{max-height:420px;overflow:auto}
+td.pc{font-size:11px;color:var(--muted);display:block;text-align:right}
+.mono td{white-space:nowrap}
+#tip{position:fixed;pointer-events:none;background:#111;border:1px solid #444;border-radius:6px;padding:7px 10px;font-size:12px;z-index:10;display:none;max-width:280px;box-shadow:0 4px 14px #0008}
+#tip .h{color:var(--muted);margin-bottom:3px}
+.empty{color:var(--muted);padding:30px 0;text-align:center}
+footer{color:#6f6b65;font-size:12px;margin-top:30px}
+#tabLata,#rekordy,#tabRecz,.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.seg{max-width:100%;overflow-x:auto;scrollbar-width:none}.seg button{white-space:nowrap;flex:0 0 auto}
+.daty{flex-wrap:wrap}
+@media (max-width:560px){.grid2,.grid3{grid-template-columns:1fr}.tile .val{font-size:26px}.wrap{padding:16px 10px 40px}.card{padding:14px 10px 12px}.tiles{grid-template-columns:repeat(2,1fr);gap:10px}.tile{min-height:0;padding:10px 12px}table{font-size:12px}th,td{padding:5px 6px}h1{font-size:21px}.controls{gap:8px 10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 id="tytul">Stacja pogodowa</h1>
+  <div class="sub" id="podtytul"></div>
+  <div id="status" class="status"></div>
+  <div class="tiles" id="kafle"></div>
+
+  <section class="card">
+    <h2>Przebieg</h2>
+    <p class="opis">Wybierz gotowy zakres albo własne daty od–do; strzałki ‹ › przesuwają okres. Pasek pod wykresem pokazuje kierunek wiatru: strzałka wskazuje, w którą stronę wieje (średnia z przedziału); kropka oznacza ciszę. Rozdzielczość dobiera się sama: do 7 dni pomiary co 5 minut (ostatnie 14 dni), do 400 dni co 30 minut (ostatnie 400 dni), dłużej albo wcześniej podsumowania dobowe.</p>
+    <div class="controls">
+      <div class="seg" id="metryki"></div>
+      <div class="seg" id="zakresy"></div>
+      <div class="daty"><button id="wstecz" title="Wcześniej">‹</button> od <input type="date" id="od"> do <input type="date" id="do"> <button id="dalej" title="Później">›</button></div>
+    </div>
+    <div class="legend" id="legPrzebieg"></div>
+    <div class="chart" id="wykPrzebieg"></div>
+    <div class="chart" id="wiatrPasek"></div>
+    <div class="sub" id="rozdzielczosc" style="margin-top:6px"></div>
+  </section>
+
+  <section class="sec">
+    <h2>Na tle normy 1991–2020</h2>
+    <div class="card" style="padding:12px 16px;margin-bottom:16px">
+      <div class="controls" style="margin-bottom:6px">
+        <div class="seg" id="trybNormy"></div>
+        <div class="chips" id="lataNormy"></div>
+        <div class="chips" id="miesNormy"></div>
+        <div class="daty" id="zakresNormy" style="display:none">od <input type="date" id="nOd"> do <input type="date" id="nDo"></div>
+      </div>
+      <div class="sub" id="opisNormy" style="margin:0"></div>
+    </div>
+    <div class="tiles" id="kafleNormy"></div>
+    <div class="grid2 sec">
+      <div class="card"><h2>Temperatura doby na tle normy</h2><p class="opis">Linia: średnia temperatura doby u Ciebie. Przerywana: norma. Szary pas: zakres typowy (80% dni w latach 1991–2020). Czerwone pole: cieplej od normy, niebieskie: chłodniej.</p><div class="chart" id="wykTn"></div></div>
+      <div class="card"><h2>Opad narastająco na tle normy</h2><p class="opis">Suma opadu od początku okresu u Ciebie i według normy (liczonej z tych samych dni). Niebieskie pole: bardziej mokro niż zwykle, pomarańczowe: bardziej sucho.</p><div class="chart" id="wykRn"></div></div>
+    </div>
+    <div class="grid2 sec">
+      <div class="card"><h2>Usłonecznienie dobowe na tle normy</h2><p class="opis" id="opisSlonca"></p><div class="chart" id="wykSn"></div></div>
+      <div class="card"><h2>Energia promieniowania słonecznego</h2><p class="opis" id="opisEnergii"></p><div class="chart" id="wykEn"></div></div>
+    </div>
+    <div class="grid3">
+      <div class="card"><h2>Miesiące: temperatura wobec normy</h2><p class="opis">Odchylenie średniej temperatury miesiąca od normy, w °C.</p><div class="chart" id="mT"></div></div>
+      <div class="card"><h2>Miesiące: opad wobec normy</h2><p class="opis">Opad miesiąca w procentach normy; 100% to norma.</p><div class="chart" id="mR"></div></div>
+      <div class="card"><h2>Miesiące: usłonecznienie wobec normy</h2><p class="opis">Szacowane godziny ze słońcem w procentach normy; 100% to norma.</p><div class="chart" id="mS"></div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Lata na tle normy</h2>
+    <p class="opis">Bieżący rok i pierwszy rok archiwum są niepełne: norma opadu jest liczona tylko z dni, z których są dane.</p>
+    <div id="tabLata"></div>
+  </section>
+
+  <section class="card">
+    <h2 id="hImgw">Twoja stacja a stacja IMGW</h2>
+    <p class="opis">Miesiąc po miesiącu, tylko z dni, z których są dane z obu stacji. IMGW publikuje dane dobowe z opóźnieniem (ok. miesiąca).</p>
+    <div class="scroll" id="tabImgw"></div>
+  </section>
+
+  <section class="card" id="sekcjaReczny">
+    <h2>Opad z deszczomierza ręcznego</h2>
+    <p class="opis">Miesięczne sumy z Twojego deszczomierza na tle normy 1991–2020 (IMGW, stacja odniesienia). Kolor komórki: niebieski – więcej niż norma, brązowy – mniej. Wiersz „automat”: suma ze stacji automatycznej w tym samym miesiącu (tylko pełne miesiące).</p>
+    <div class="grid2">
+      <div><div class="legend" id="legRecz"></div><div class="chart" id="wykRecz"></div></div>
+      <div><div class="legend" id="legReczM"></div><div class="chart" id="wykReczM"></div></div>
+    </div>
+    <div class="scroll" id="tabRecz" style="margin-top:14px;max-height:none"></div>
+  </section>
+
+  <div class="grid3 sec">
+    <div class="card"><h2>Średnia temperatura miesiąca</h2><p class="opis">Każda linia to jeden rok. Miesiąc bieżący liczony z dotychczasowych dni.</p><div class="legend" id="legMT"></div><div class="chart" id="wykMT"></div></div>
+    <div class="card"><h2>Opad narastająco od 1 stycznia</h2><p class="opis">Suma opadów w milimetrach. Pomijane są lata, z których archiwum nie ma danych od 1 stycznia. Linia przerywana: norma 1991–2020.</p><div class="legend" id="legOR"></div><div class="chart" id="wykOR"></div></div>
+    <div class="card"><h2>Wiatr w kolejnych miesiącach</h2>
+      <div class="controls" style="margin:4px 0 8px"><div class="seg" id="wiatrTryb"></div><div class="seg" id="wiatrJedn"></div></div>
+      <p class="opis">Średnia prędkość: średnia z dób miesiąca. Poryw: największy w miesiącu.</p><div class="legend" id="legW"></div><div class="chart" id="wykW"></div></div>
+  </div>
+
+  <section class="card">
+    <h2>Kalendarz średnich temperatur dobowych</h2>
+    <div class="controls" style="margin:4px 0 8px"><div class="seg" id="kalTryb"></div></div>
+    <p class="opis" id="opisKal"></p>
+    <div id="kalendarz"></div>
+  </section>
+
+  <div class="grid2 sec">
+    <div class="card"><h2>Róża wiatrów</h2><p class="opis">Udział pomiarów co 30 minut z ostatnich 12 miesięcy, z którego kierunku wiało, w klasach prędkości średniej. Cisza (poniżej 0,5 m/s) jest w środku, bez kierunku.</p>
+      <div class="controls" style="margin:4px 0 8px"><div class="seg" id="rozaJedn"></div></div><div class="legend" id="legRoza"></div><div class="chart" id="roza"></div></div>
+    <div class="card"><h2>Rekordy archiwum</h2><p class="opis">Wartości skrajne z podsumowań dobowych od początku archiwum.</p><div id="rekordy"></div></div>
+  </div>
+  <footer id="stopka"></footer>
+</div>
+<div id="tip"></div>
+
+<script>
+window.DANE = /*__DANE__*/null;
+</script>
+<script>
+(function(){
+"use strict";
+const D = window.DANE;
+const $ = id => document.getElementById(id);
+const MIES = ['sty','lut','mar','kwi','maj','cze','lip','sie','wrz','paź','lis','gru'];
+const MIES_PELNE = ['styczeń','luty','marzec','kwiecień','maj','czerwiec','lipiec','sierpień','wrzesień','październik','listopad','grudzień'];
+const KOL_LAT = ['#e0a21c','#e86a3a','#1fb59a','#3b8eea','#b07ce8','#d9d9d9','#e2577b','#8cc152'];
+const BLUE='#3b8eea', GREY='#7d7d7d', ORANGE='#e0a21c';
+const pad = n => String(n).padStart(2,'0');
+const ok = v => v!==null && v!==undefined && isFinite(v);
+function fmt(v,d=1){ if(ok(v)&&Math.abs(v)<0.5*10**-d) v=0; return ok(v) ? v.toLocaleString('pl-PL',{minimumFractionDigits:d,maximumFractionDigits:d}) : '—'; }
+function fmtZ(v,d=1){ if(!ok(v)) return '—'; const r=+v.toFixed(d); return (r>0?'+':r<0?'−':'±')+fmt(Math.abs(r),d); }
+function esc(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+if(!D){ document.querySelector('.wrap').innerHTML='<p class="empty">Brak danych — uruchom stacja_pogodowa.py</p>'; return; }
+const TZ = D.meta.tz || 'Europe/Warsaw';
+const dtf = new Intl.DateTimeFormat('pl-PL',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+function P(ts){ const o={}; for(const p of dtf.formatToParts(new Date(ts*1000))) o[p.type]=p.value; return o; }
+function offs(ts){ const p=P(ts); return (Date.UTC(+p.year,+p.month-1,+p.day,+p.hour,+p.minute)/1000)-ts; }
+function lokPolnoc(str){ const [y,m,d]=str.split('-').map(Number); const u=Date.UTC(y,m-1,d)/1000; return u-offs(u); }
+function dataStr(ts){ const p=P(ts); return `${p.year}-${p.month}-${p.day}`; }
+function dzienTs(str){ const [y,m,d]=str.split('-').map(Number); return Date.UTC(y,m-1,d,12)/1000; }
+function krotko(ts,godz=true){ const p=P(ts); return `${+p.day} ${MIES[+p.month-1]}${godz?`, ${p.hour}:${p.minute}`:''}`; }
+function dStrPl(s,rok=false){ const [y,m,d]=s.split('-').map(Number); return `${d} ${MIES[m-1]}${rok?' '+y:''}`; }
+function idx366(s){ const [,m,d]=s.split('-').map(Number); return Math.round((Date.UTC(2000,m-1,d)-Date.UTC(2000,0,1))/864e5); }
+const KIER = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+const kier = deg => ok(deg) ? KIER[Math.round(deg/22.5)%16] : '—';
+
+// ── dane pomocnicze
+const fine = D.fine||{t:[]}, mid = D.mid||{t:[]}, daily = D.daily||{d:[]};
+daily.t = daily.d.map(dzienTs);
+const N = D.normy;
+const IM = D.imgw ? Object.fromEntries(D.imgw.d.map((d,i)=>[d,{t:D.imgw.tavg[i],r:D.imgw.rain[i],s:D.imgw.sun[i]}])) : {};
+const ostTs = D.meta.ostatni_ts || Math.floor(Date.now()/1000);
+const dIdx = Object.fromEntries(daily.d.map((d,i)=>[d,i]));
+const RECZ = Object.fromEntries((D.reczny||[]).map(([y,m,v])=>[`${y}-${pad(m)}`,v]));
+function normaMies(y,m){ if(!N) return null; const ld=new Date(Date.UTC(y,m,0)).getUTCDate(); let s=0; for(let d=1; d<=ld; d++) s+=N.rain[idx366(`${y}-${pad(m)}-${pad(d)}`)]||0; return s; }
+function autoMies(y,m){ const ld=new Date(Date.UTC(y,m,0)).getUTCDate(); let s=0,n=0; for(let d=1; d<=ld; d++){ const i=dIdx[`${y}-${pad(m)}-${pad(d)}`]; if(i!==undefined&&ok(daily.rain?.[i])){ s+=daily.rain[i]; n++; } } return n>=ld-1? s : null; }
+function col(tier,k){ return tier[k] || []; }
+
+// ── tooltip
+const tip = $('tip');
+function pokazTip(e,html){ tip.innerHTML=html; tip.style.display='block'; const w=tip.offsetWidth,h=tip.offsetHeight; let x=e.clientX+14, y=e.clientY+14; if(x+w>innerWidth-8) x=e.clientX-w-14; if(y+h>innerHeight-8) y=e.clientY-h-14; tip.style.left=x+'px'; tip.style.top=y+'px'; }
+function ukryjTip(){ tip.style.display='none'; }
+
+// ── osie
+function nice(lo,hi,n=5){ if(!(hi>lo)){ lo-=1; hi+=1; } const st0=(hi-lo)/n, mag=10**Math.floor(Math.log10(st0)), r=st0/mag; const st=(r<1.5?1:r<3?2:r<7?5:10)*mag; const a=Math.floor(lo/st+1e-9)*st, b=Math.ceil(hi/st-1e-9)*st; const t=[]; for(let v=a; v<=b+st/2; v+=st) t.push(+v.toFixed(8)); return {min:a,max:b,ticks:t,step:st}; }
+function osCzasu(x0,x1){
+  const span=(x1-x0)/86400, out=[];
+  if(span<=3.5){ const co=span<=1.2?3:6; for(let t=Math.ceil(x0/3600)*3600; t<=x1; t+=3600){ const p=P(t); if(+p.minute===0 && +p.hour%co===0) out.push([t, +p.hour===0?`${+p.day}.${p.month}`:`${p.hour}:00`]); } }
+  else if(span<=60){ const co=span<=10?1:span<=21?2:7; for(let t=Math.floor(x0/86400)*86400; t<=x1; t+=86400){ const dd=new Date(t*1000), n=Math.floor(t/86400); if(co===7? dd.getUTCDay()===1 : n%co===0) out.push([t-offs(t), `${dd.getUTCDate()}.${pad(dd.getUTCMonth()+1)}`]); } }
+  else { const co=span>2400?12:span>1300?6:span>700?3:span>420?2:1; const d0=new Date(x0*1000); let y=d0.getUTCFullYear(), m=d0.getUTCMonth()+1; if(m>11){m=0;y++;} for(;;){ const t=Date.UTC(y,m,1)/1000; if(t>x1) break; if((y*12+m)%co===0) out.push([t, co>=12?`${y}`:`${pad(m+1)}.${y}`]); m++; if(m>11){m=0;y++;} } }
+  return out;
+}
+function osMiesiecy(x0,x1){ const out=[]; const d0=new Date(x0*1000); let y=d0.getUTCFullYear(), m=d0.getUTCMonth(); const span=(x1-x0)/86400; const co=span>200?(span>500?3:1):1; for(;;){ const t=Date.UTC(y,m,15)/1000; if(t>x1) break; if(t>=x0 && m%co===0) out.push([t, span>200? MIES[m] : `${MIES[m]}`]); m++; if(m>11){m=0;y++;} } return out; }
+function szukaj(x,t){ let lo=0,hi=x.length-1; if(hi<0) return -1; while(lo<hi){ const mm=(lo+hi)>>1; if(x[mm]<t) lo=mm+1; else hi=mm; } if(lo>0 && Math.abs(x[lo-1]-t)<Math.abs(x[lo]-t)) lo--; return lo; }
+
+// ── uniwersalny wykres SVG
+function wykres(el,o){
+  const W=Math.max(280, el.clientWidth||600), H=o.height||280, m={l:o.ml||46,r:o.mr||12,t:10,b:24};
+  const pw=W-m.l-m.r, ph=H-m.t-m.b, [x0,x1]=o.x;
+  let lo=Infinity, hi=-Infinity;
+  for(const s of o.series){ if(s.color==='transparent') continue; for(const k of ['y','y2']) if(s[k]) for(let i=0;i<s[k].length;i++){ const v=s[k][i]; if(ok(v) && s.x[i]>=x0-1 && s.x[i]<=x1+1){ if(v<lo) lo=v; if(v>hi) hi=v; } } if(s.type==='bar'){ lo=Math.min(lo,s.base||0); hi=Math.max(hi,s.base||0); } }
+  for(const v of (o.include||[])){ lo=Math.min(lo,v); hi=Math.max(hi,v); }
+  if(!isFinite(lo)){ el.innerHTML='<div class="empty">Brak danych w tym okresie</div>'; return; }
+  const ny=nice(lo,hi,o.yTicks||5);
+  const X=t=>m.l+(t-x0)/(x1-x0||1)*pw, Y=v=>m.t+(ny.max-v)/(ny.max-ny.min)*ph;
+  const f=v=>v.toFixed(1);
+  let s=`<svg width="100%" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="height:${H}px">`;
+  for(const t of ny.ticks){ s+=`<line class="grid" x1="${m.l}" x2="${W-m.r}" y1="${f(Y(t))}" y2="${f(Y(t))}"/><text class="ax" x="${m.l-7}" y="${f(Y(t)+4)}" text-anchor="end">${(o.yFmt||((v,d)=>fmt(v,d)))(t, ny.step<0.1?2:ny.step<1?1:0)}</text>`; }
+  if(o.zero && ny.min<0 && ny.max>0) s+=`<line class="zero" x1="${m.l}" x2="${W-m.r}" y1="${f(Y(0))}" y2="${f(Y(0))}"/>`;
+  for(const s1 of (o.hlines||[])) s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${f(Y(s1))}" y2="${f(Y(s1))}" stroke="#777"/>`;
+  for(const [t,lab] of (o.xTicks||osCzasu)(x0,x1)){ if(t<x0||t>x1) continue; s+=`<text class="ax" x="${f(X(t))}" y="${H-6}" text-anchor="middle">${lab}</text>`; }
+  const segmenty=(xs,ys,gap)=>{ const out=[]; let cur=[]; for(let i=0;i<xs.length;i++){ if(xs[i]<x0-gap||xs[i]>x1+gap){ continue; } if(!ok(ys[i]) || (cur.length && xs[i]-cur[cur.length-1][0]>gap)){ if(cur.length) out.push(cur); cur=[]; if(!ok(ys[i])) continue; } cur.push([xs[i],ys[i]]); } if(cur.length) out.push(cur); return out; };
+  for(const sr of o.series){
+    const gap=sr.gap||Infinity;
+    if(sr.type==='band'){
+      const seg=[]; let cur=[];
+      for(let i=0;i<sr.x.length;i++){ if(sr.x[i]<x0-gap||sr.x[i]>x1+gap) continue; if(ok(sr.y[i])&&ok(sr.y2[i])&&!(cur.length&&sr.x[i]-cur[cur.length-1][0]>gap)) cur.push([sr.x[i],sr.y[i],sr.y2[i]]); else { if(cur.length) seg.push(cur); cur=ok(sr.y[i])&&ok(sr.y2[i])?[[sr.x[i],sr.y[i],sr.y2[i]]]:[]; } }
+      if(cur.length) seg.push(cur);
+      for(const c of seg){ const d='M'+c.map(p=>f(X(p[0]))+','+f(Y(p[2]))).join('L')+'L'+c.slice().reverse().map(p=>f(X(p[0]))+','+f(Y(p[1]))).join('L')+'Z'; s+=`<path d="${d}" fill="${sr.color}" fill-opacity="${sr.op??.25}" stroke="none"/>`; }
+    } else if(sr.type==='fillsign'){
+      for(const [kol,znak] of [[sr.up,1],[sr.down,-1]]){
+        const seg=[]; let cur=[];
+        for(let i=0;i<sr.x.length;i++){ if(sr.x[i]<x0||sr.x[i]>x1) continue; const a=sr.y[i], b=sr.ref[i]; if(ok(a)&&ok(b)) cur.push([sr.x[i], znak>0?Math.max(a,b):Math.min(a,b), b]); else if(cur.length){ seg.push(cur); cur=[]; } }
+        if(cur.length) seg.push(cur);
+        for(const c of seg){ const d='M'+c.map(p=>f(X(p[0]))+','+f(Y(p[1]))).join('L')+'L'+c.slice().reverse().map(p=>f(X(p[0]))+','+f(Y(p[2]))).join('L')+'Z'; s+=`<path d="${d}" fill="${kol}" fill-opacity="${sr.op??.55}" stroke="none"/>`; }
+      }
+    } else if(sr.type==='bar'){
+      const bw=Math.min(sr.maxW||1e9, Math.max(1, (sr.bw||86400)/(x1-x0)*pw*(sr.frac||.8))), base=sr.base||0;
+      for(let i=0;i<sr.x.length;i++){ const v=sr.y[i]; if(!ok(v)||sr.x[i]<x0||sr.x[i]>x1||v===base) continue; const ya=Y(Math.max(v,base)), yb=Y(Math.min(v,base)); s+=`<rect x="${f(X(sr.x[i])-bw/2)}" y="${f(ya)}" width="${f(bw)}" height="${f(Math.max(.5,yb-ya))}" fill="${typeof sr.color==='function'?sr.color(v,i):sr.color}"/>`; }
+    } else if(sr.type==='dots'){
+      for(let i=0;i<sr.x.length;i++){ const v=sr.y[i]; if(!ok(v)||sr.x[i]<x0||sr.x[i]>x1) continue; s+=`<circle cx="${f(X(sr.x[i]))}" cy="${f(Y(v))}" r="${sr.r||2}" fill="${sr.color}"/>`; }
+    } else {
+      for(const c of segmenty(sr.x,sr.y,gap)){ if(c.length===1){ s+=`<circle cx="${f(X(c[0][0]))}" cy="${f(Y(c[0][1]))}" r="2" fill="${sr.color}"/>`; continue; } s+=`<path d="M${c.map(p=>f(X(p[0]))+','+f(Y(p[1]))).join('L')}" fill="none" stroke="${sr.color}" stroke-width="${sr.width||1.6}" ${sr.dash?`stroke-dasharray="${sr.dash}"`:''} stroke-linejoin="round"/>`; }
+      if(sr.endDot){ const c=segmenty(sr.x,sr.y,gap).pop(); if(c){ const p=c[c.length-1]; s+=`<circle cx="${f(X(p[0]))}" cy="${f(Y(p[1]))}" r="3.5" fill="${sr.color}"/>`; } }
+    }
+  }
+  s+=`<line id="kursor" x1="0" x2="0" y1="${m.t}" y2="${H-m.b}" stroke="#bbb" stroke-dasharray="3 3" style="display:none"/></svg>`;
+  el.innerHTML=s;
+  const svg=el.querySelector('svg'), kur=svg.querySelector('#kursor');
+  const tipy=o.series.filter(sr=>sr.name && sr.tip!==false);
+  svg.addEventListener('mousemove',e=>{
+    const r=svg.getBoundingClientRect(), px=(e.clientX-r.left)*W/r.width, t=x0+(px-m.l)/pw*(x1-x0);
+    if(px<m.l||px>W-m.r){ ukryjTip(); kur.style.display='none'; return; }
+    let tx=null, lin=[];
+    const tol=o.tol||Math.max((x1-x0)/pw*24, 1);
+    for(const sr of tipy){ const i=szukaj(sr.x,t); if(i<0||Math.abs(sr.x[i]-t)>Math.max(tol,(sr.bw||0)/2)) continue; if(tx===null) tx=sr.x[i]; const v=sr.y[i]; lin.push(`<div><span style="color:${typeof sr.color==='function'?sr.color(v,i):sr.color}">●</span> ${esc(sr.name)}: <b>${sr.fmt?sr.fmt(v,i):fmt(v,1)}</b></div>`); }
+    if(tx===null){ ukryjTip(); kur.style.display='none'; return; }
+    kur.setAttribute('x1',X(tx)); kur.setAttribute('x2',X(tx)); kur.style.display='';
+    pokazTip(e,`<div class="h">${(o.tipTitle||(t=>krotko(t)))(tx)}</div>`+lin.join(''));
+  });
+  svg.addEventListener('mouseleave',()=>{ ukryjTip(); kur.style.display='none'; });
+  return {X,Y,W,m,pw};
+}
+function legenda(el,items){ el.innerHTML=items.map(([n,c,dash])=>`<span><i style="background:${dash?'repeating-linear-gradient(90deg,'+c+' 0 4px,transparent 4px 7px)':c}"></i>${esc(n)}</span>`).join(''); }
+function segment(el,opcje,akt,cb){ el.innerHTML=''; for(const [v,lab] of opcje){ const b=document.createElement('button'); b.textContent=lab; if(v===akt) b.className='on'; b.onclick=()=>{ [...el.children].forEach(x=>x.className=''); b.className='on'; cb(v); }; el.appendChild(b); } }
+function chipy(el,opcje,akt,cb){ el.innerHTML=''; for(const [v,lab] of opcje){ const b=document.createElement('button'); b.textContent=lab; if(v===akt) b.className='on'; b.onclick=()=>cb(v); el.appendChild(b); } }
+
+// ── nagłówek, status, kafelki
+$('tytul').textContent = D.meta.nazwa;
+document.title = D.meta.nazwa;
+$('podtytul').textContent = (ok(D.meta.lat)?`${fmt(D.meta.lat,3)}° N, ${fmt(D.meta.lon,3)}° E · `:'') + (D.meta.imgw_stacja?`odniesienie: IMGW ${D.meta.imgw_stacja}`:'') + ((D.meta.zrodla||[]).length? ' · dane: '+D.meta.zrodla.filter(z=>z.od).map(z=>`${z.nazwa} od ${krotko(z.od,false)} ${new Date(z.od*1000).getUTCFullYear()}`).join(', potem '):'');
+(function status(){
+  const teraz=Date.now()/1000, gen=D.meta.sync_ecowitt||D.meta.wygenerowano, ost=D.meta.ostatni_ts;
+  const ostrz=[];
+  if(teraz-gen>26*3600) ostrz.push(`Ostatnia aktualizacja dashboardu: ${krotko(gen)} (${Math.round((teraz-gen)/3600)} h temu) — sprawdź, czy zadanie w Harmonogramie zadań działa.`);
+  if(ost && gen-ost>3*3600) ostrz.push(`Stacja nie wysłała danych od ${krotko(ost)} (${Math.round((gen-ost)/3600)} h przed synchronizacją) — sprawdź Wi-Fi konsoli.`);
+  for(const b of (D.meta.bledy||[])) ostrz.push('Błąd synchronizacji — '+b);
+  const el=$('status'); if(!ostrz.length) el.classList.add('ok');
+  el.innerHTML=`<span class="dot"></span><b>${ostrz.length?'Uwaga przy aktualizacji danych':'Dane aktualne'}</b><span class="meta">ostatni pomiar ${ost?krotko(ost):'—'} · synchronizacja ${krotko(gen)}${D.meta.imgw_do?` · IMGW do ${dStrPl(D.meta.imgw_do,true)}`:''}</span>`+ostrz.map(w=>`<div class="warn">${esc(w)}</div>`).join('');
+})();
+(function kafle(){
+  const n=D.now||{}, v=k=>n[k]?n[k].v:null;
+  const dzisiaj = n.rd && dataStr(n.rd.ts)===dataStr(ostTs);
+  const k=[
+    ['Temperatura',fmt(v('temp')),'°C',`odczuwalna ${fmt(v('feels'))} °C`],
+    ['Wilgotność',fmt(v('hum'),0),'%',`punkt rosy ${fmt(v('dew'))} °C`],
+    ['Ciśnienie',fmt(v('press')),'hPa',ok(n.press3h)?`${fmtZ(n.press3h)} hPa w 3 h`:''],
+    ['Wiatr',fmt(v('wind')),'m/s',`porywy ${fmt(v('gust'))} m/s, z kierunku ${kier(v('dir'))}`],
+    ['Opad dziś',fmt(dzisiaj?v('rd'):0),'mm',`od początku miesiąca ${fmt(v('rm'))} mm`],
+    ['W domu',fmt(v('tin')),'°C',`wilgotność ${fmt(v('hin'),0)} %`],
+  ];
+  $('kafle').innerHTML=k.map(([l,w,j,d])=>`<div class="tile"><div class="lab">${l}</div><div class="val">${w}<small>${j}</small></div><div class="det">${d}</div></div>`).join('');
+})();
+
+// ── PRZEBIEG
+const przyrosty = tier => { const rd=col(tier,'rd'), out=new Array(rd.length).fill(null); for(let i=1;i<rd.length;i++){ if(!ok(rd[i])||!ok(rd[i-1])) continue; const dlt=rd[i]-rd[i-1]; out[i]= dlt>=0? (dlt>0?+dlt.toFixed(1):0) : (rd[i]>0?rd[i]:0); } return out; };
+const PRZ = {fine:null, mid:null};
+const METRYKI = [['temp','Temperatura'],['hum','Wilgotność'],['press','Ciśnienie'],['wind','Wiatr'],['rain','Opad'],['sun','Słońce'],['home','W domu']];
+const st = {met:'temp', od:0, do:0, preset:'48h'};
+function warstwa(od,doo){ const span=(doo-od)/86400; if(span<=7.01 && fine.t.length && od>=fine.t[0]-3600) return 'fine'; if(span<=400.5 && mid.t.length && od>=mid.t[0]-86400) return 'mid'; return 'daily'; }
+function seriePrzebiegu(met,w){
+  const T = w==='daily'?daily:(w==='fine'?fine:mid), x=T.t, krok = w==='fine'?300:w==='mid'?1800:86400, gap=krok*3.5;
+  const L=(k,name,color,f,extra={})=>Object.assign({type:'line',x,y:col(T,k),name,color,gap,fmt:f},extra);
+  const fT=v=>fmt(v)+' °C';
+  switch(met){
+    case 'temp': return w==='daily'
+      ? {jedn:'°C', s:[{type:'band',x,y:col(T,'tmin'),y2:col(T,'tmax'),color:BLUE,op:.15,gap}, L('tmin','Minimum',BLUE,fT,{tip:true,color:'transparent',width:0}), L('tmax','Maksimum',BLUE,fT,{color:'transparent',width:0}), L('feels','Odczuwalna',GREY,fT), L('tavg','Średnia doby',BLUE,fT)], leg:[['Średnia doby',BLUE],['Odczuwalna',GREY],['min–maks','#3b8eea55']]}
+      : {jedn:'°C', s:[L('feels','Odczuwalna',GREY,fT), L('temp','Temperatura',BLUE,fT)], leg:[['Odczuwalna',GREY],['Temperatura',BLUE]]};
+    case 'hum': return {jedn:'%', s:[L('hum','Wilgotność',BLUE,v=>fmt(v,0)+' %'), L('dew','Punkt rosy',GREY,fT,{color:'transparent',width:0})], leg:[['Wilgotność względna',BLUE]]};
+    case 'press': return {jedn:'hPa', s:[L('press','Ciśnienie',BLUE,v=>fmt(v)+' hPa')], leg:[['Ciśnienie (zredukowane do poziomu morza)',BLUE]]};
+    case 'wind': return {jedn:'m/s', s:[L('gust', w==='daily'?'Najsilniejszy poryw':'Porywy',GREY,v=>fmt(v)+' m/s'), L('wind', w==='daily'?'Średnia prędkość':'Prędkość',BLUE,v=>fmt(v)+' m/s')], leg:[[w==='daily'?'Średnia prędkość':'Prędkość',BLUE],[w==='daily'?'Najsilniejszy poryw doby':'Porywy',GREY]], include:[0]};
+    case 'rain': { if(w==='daily') return {jedn:'mm', s:[{type:'bar',x,y:col(T,'rain'),bw:86400,color:BLUE,name:'Opad doby',fmt:v=>fmt(v)+' mm'}], leg:[['Opad dobowy',BLUE]], include:[0]};
+      if(!PRZ[w]) PRZ[w]=przyrosty(T); return {jedn:'mm', s:[{type:'bar',x,y:PRZ[w],bw:krok,frac:1,color:BLUE,name:`Opad w ${krok/60} min`,fmt:v=>fmt(v)+' mm'}, L('rr','Natężenie',ORANGE,v=>fmt(v)+' mm/h',{tip:true,color:'transparent',width:0})], leg:[[`Opad w przedziałach ${krok/60}-minutowych`,BLUE]], include:[0]}; }
+    case 'sun': return w==='daily'
+      ? {jedn:'kWh/m²', s:[{type:'bar',x,y:col(T,'energy'),bw:86400,color:ORANGE,name:'Energia',fmt:v=>fmt(v,2)+' kWh/m²'}, L('sun','Słońce',GREY,v=>fmt(v)+' h',{color:'transparent',width:0}), L('uvi','UV maks.',GREY,v=>fmt(v),{color:'transparent',width:0})], leg:[['Dobowa suma promieniowania, kWh/m²',ORANGE]], include:[0]}
+      : {jedn:'W/m²', s:[L('solar','Promieniowanie',ORANGE,v=>fmt(v,0)+' W/m²'), L('uvi','Indeks UV',GREY,v=>fmt(v),{color:'transparent',width:0})], leg:[['Promieniowanie słoneczne, W/m²',ORANGE]], include:[0]};
+    case 'home': return {jedn:'°C', s:[L('tin','Temperatura w domu',BLUE,fT), L('hin','Wilgotność w domu',GREY,v=>fmt(v,0)+' %',{color:'transparent',width:0})], leg:[['Temperatura w domu',BLUE]]};
+  }
+}
+function rysujPrzebieg(){
+  const w=warstwa(st.od,st.do), cfg=seriePrzebiegu(st.met,w);
+  cfg.s = cfg.s.filter(s=>s.y && s.y.length);
+  legenda($('legPrzebieg'), cfg.leg);
+  const tt = w==='daily' ? (t=>krotko(t,false)+' '+new Date(t*1000).getUTCFullYear()) : (t=>krotko(t));
+  const r = wykres($('wykPrzebieg'),{x:[st.od,st.do],series:cfg.s,height:300,include:cfg.include,zero:st.met==='temp',tipTitle:tt});
+  $('od').value=dataStr(st.od); $('do').value=dataStr(st.do-60);
+  $('rozdzielczosc').textContent = 'Rozdzielczość: '+({fine:'pomiary co 5 minut',mid:'pomiary co 30 minut',daily:'podsumowania dobowe'})[w];
+  if(r) pasekWiatru(w,r);
+  else $('wiatrPasek').innerHTML='';
+}
+function pasekWiatru(w,r){
+  const T = w==='daily'?daily:(w==='fine'?fine:mid), x=T.t, dir=col(T,'dir'), sp=col(T,'wind');
+  const el=$('wiatrPasek'), H=46, nb=Math.max(12,Math.min(90,Math.floor(r.pw/17))), dt=(st.do-st.od)/nb;
+  if(!dir.length){ el.innerHTML=''; return; }
+  let s=`<svg width="100%" viewBox="0 0 ${r.W} ${H}" preserveAspectRatio="none" style="height:${H}px">`;
+  s+=`<text class="ax" x="${r.m.l-24}" y="14" text-anchor="middle">N</text><text class="ax" x="${r.m.l-24}" y="40" text-anchor="middle">S</text><text class="ax" x="${r.m.l-34}" y="27" text-anchor="middle">W</text><text class="ax" x="${r.m.l-14}" y="27" text-anchor="middle">E</text>`;
+  let i0=szukaj(x,st.od); if(i0<0){ el.innerHTML=''; return; } if(x[i0]<st.od) i0++;
+  for(let b=0;b<nb;b++){
+    const a=st.od+b*dt, e=a+dt; let su=0,cu=0,ss=0,n=0;
+    while(i0<x.length && x[i0]<e){ if(x[i0]>=a && ok(dir[i0])){ const rad=dir[i0]*Math.PI/180, v=ok(sp[i0])?sp[i0]:1; su+=Math.sin(rad)*Math.max(v,.1); cu+=Math.cos(rad)*Math.max(v,.1); ss+=ok(sp[i0])?sp[i0]:0; n++; } i0++; }
+    const cx=r.X(a+dt/2), cy=H/2;
+    if(b%2===0) s+=`<rect x="${r.X(a).toFixed(1)}" y="0" width="${(r.X(e)-r.X(a)).toFixed(1)}" height="${H}" fill="#ffffff07"/>`;
+    if(!n) continue;
+    if(ss/n<0.5){ s+=`<circle cx="${cx.toFixed(1)}" cy="${cy}" r="2.2" fill="${BLUE}"/>`; continue; }
+    const deg=(Math.atan2(su,cu)*180/Math.PI+360)%360, rot=deg+180;
+    s+=`<g transform="translate(${cx.toFixed(1)},${cy}) rotate(${rot.toFixed(0)})"><line x1="0" y1="8" x2="0" y2="-6" stroke="${BLUE}" stroke-width="1.6"/><path d="M-3.6,-4 L0,-10 L3.6,-4 Z" fill="${BLUE}"/></g>`;
+  }
+  el.innerHTML=s+'</svg>';
+}
+function ustawPreset(p){
+  st.preset=p; const koniec=Math.ceil((ostTs+60)/300)*300;
+  const dni={'48h':2,'7d':7,'30d':30,'rok':365}[p];
+  if(dni){ st.do=koniec; st.od=koniec-dni*86400; }
+  else { st.od = daily.t.length? lokPolnoc(daily.d[0]) : koniec-365*86400; st.do=koniec; }
+  rysujPrzebieg();
+}
+segment($('metryki'),METRYKI,'temp',v=>{st.met=v; rysujPrzebieg();});
+segment($('zakresy'),[['48h','48 h'],['7d','7 dni'],['30d','30 dni'],['rok','Rok'],['all','Całość']],'48h',ustawPreset);
+$('od').onchange=()=>{ if(!$('od').value) return; st.od=lokPolnoc($('od').value); if(st.do<=st.od) st.do=st.od+86400; [...$('zakresy').children].forEach(b=>b.className=''); rysujPrzebieg(); };
+$('do').onchange=()=>{ if(!$('do').value) return; st.do=lokPolnoc($('do').value)+86400; if(st.do<=st.od) st.od=st.do-86400; [...$('zakresy').children].forEach(b=>b.className=''); rysujPrzebieg(); };
+$('wstecz').onclick=()=>{ const s=st.do-st.od; st.od-=s; st.do-=s; rysujPrzebieg(); };
+$('dalej').onclick=()=>{ const s=st.do-st.od; st.od+=s; st.do+=s; rysujPrzebieg(); };
+
+// ── NORMY
+const nt = s => N ? N.t[idx366(s)] : null;
+const lataArch = [...new Set(daily.d.map(d=>+d.slice(0,4)))].sort();
+const ostDzien = daily.d.length ? daily.d[daily.d.length-1] : null;
+const sn = {tryb:'rok', rok: lataArch[lataArch.length-1], mies: ostDzien? +ostDzien.slice(5,7):1, od:null, doo:null};
+function okres(){
+  if(sn.tryb==='rok') return [`${sn.rok}-01-01`, `${sn.rok}-12-31`];
+  if(sn.tryb==='mies'){ const ld=new Date(Date.UTC(sn.rok,sn.mies,0)).getUTCDate(); return [`${sn.rok}-${pad(sn.mies)}-01`,`${sn.rok}-${pad(sn.mies)}-${pad(ld)}`]; }
+  return [sn.od||daily.d[0], sn.doo||ostDzien];
+}
+function dniOkresu(a,b){ const out=[]; for(let i=0;i<daily.d.length;i++){ const d=daily.d[i]; if(d>=a&&d<=b) out.push(i); } return out; }
+function statystyki(ix){
+  const r={n:0,sT:0,sN:0,ciep:0,chl:0,maxD:null,minD:null,deszcz:0,deszczN:0,nD:0,slonce:0,sloneN:0,nS:0,energia:0};
+  for(const i of ix){ const d=daily.d[i], j=idx366(d), t=daily.tavg?.[i];
+    if(ok(t)&&N&&ok(N.t[j])){ const dev=t-N.t[j]; r.n++; r.sT+=t; r.sN+=N.t[j]; if(dev>0) r.ciep++; else if(dev<0) r.chl++; if(!r.maxD||dev>r.maxD[0]) r.maxD=[dev,d]; if(!r.minD||dev<r.minD[0]) r.minD=[dev,d]; }
+    const rr=daily.rain?.[i]; if(ok(rr)&&N&&ok(N.rain[j])){ r.deszcz+=rr; r.deszczN+=N.rain[j]; r.nD++; }
+    const ss=daily.sun?.[i]; if(ok(ss)&&N&&ok(N.sun[j])){ r.slonce+=ss; r.sloneN+=N.sun[j]; r.nS++; }
+    const en=daily.energy?.[i]; if(ok(en)) r.energia+=en;
+  }
+  return r;
+}
+function rysujNormy(){
+  segment($('trybNormy'),[['rok','Rok'],['mies','Miesiąc'],['zakres','Własny zakres']],sn.tryb,v=>{sn.tryb=v; rysujNormy();});
+  chipy($('lataNormy'),lataArch.map(y=>[y,String(y)]),sn.rok,v=>{sn.rok=v; rysujNormy();});
+  $('lataNormy').style.display = sn.tryb==='zakres'?'none':'';
+  $('miesNormy').style.display = sn.tryb==='mies'?'':'none';
+  $('zakresNormy').style.display = sn.tryb==='zakres'?'':'none';
+  if(sn.tryb==='mies') chipy($('miesNormy'),MIES.map((m,i)=>[i+1,m]),sn.mies,v=>{sn.mies=v; rysujNormy();});
+  if(sn.tryb==='zakres'){ $('nOd').value=okres()[0]; $('nDo').value=okres()[1]; }
+  const [a,b]=okres(), ix=dniOkresu(a,b);
+  if(!N){ $('opisNormy').textContent='Brak norm IMGW — sprawdź log synchronizacji.'; return; }
+  const aa=ix.length?daily.d[ix[0]]:a, bb=ix.length?daily.d[ix[ix.length-1]]:b;
+  $('opisNormy').innerHTML=`Okres: <b>${dStrPl(aa,true)} – ${dStrPl(bb,true)} (${ix.length} dób)</b>. Normy z danych dobowych IMGW-PIB ${N.lata[0]}–${N.lata[1]}: stacja ${esc(D.meta.imgw_stacja||'')}.`;
+  const s=statystyki(ix);
+  const kt=[
+    ['Temperatura wobec normy', fmtZ(s.n?(s.sT-s.sN)/s.n:null),'°C', `średnio ${fmt(s.n?s.sT/s.n:null)} °C, norma ${fmt(s.n?s.sN/s.n:null)} °C`],
+    ['Opad wobec normy', fmt(s.deszczN?100*s.deszcz/s.deszczN:null,0),'%', `${fmt(s.deszcz)} mm, norma ${fmt(s.deszczN)} mm`+reczWOkresie(a,b)],
+    ['Doby cieplejsze od normy', String(s.ciep), `z ${s.n}`, `chłodniejszych ${s.chl}`],
+    ['Największe odchylenia doby', s.maxD?fmtZ(s.maxD[0]):'—','°C', s.maxD?`${dStrPl(s.maxD[1])}; najzimniej ${fmtZ(s.minD[0])} °C (${dStrPl(s.minD[1])})`:''],
+    ['Usłonecznienie wobec normy', fmt(s.sloneN?100*s.slonce/s.sloneN:null,0),'%', `${fmt(s.slonce,0)} h, norma ${fmt(s.sloneN,0)} h; energia ${fmt(s.energia,0)} kWh/m²`],
+  ];
+  $('kafleNormy').innerHTML=kt.map(([l,w,j,d])=>`<div class="tile"><div class="lab">${l}</div><div class="val">${w}<small>${j}</small></div><div class="det">${d}</div></div>`).join('');
+  const x=ix.map(i=>daily.t[i]), dd=ix.map(i=>daily.d[i]);
+  const x0=dzienTs(sn.tryb==='mies'?a:aa)-43200, x1=Math.min(dzienTs(b), dzienTs(bb||b))+43200;
+  const osX = (x1-x0)/86400>70 ? osMiesiecy : osCzasu;
+  const tTitle=t=>krotko(t,false)+' '+new Date(t*1000).getUTCFullYear();
+  // temperatura
+  const T=ix.map(i=>daily.tavg?.[i]??null), Tn=dd.map(nt), p10=dd.map(d=>N.p10[idx366(d)]), p90=dd.map(d=>N.p90[idx366(d)]);
+  wykres($('wykTn'),{x:[x0,x1],height:300,xTicks:osX,tipTitle:tTitle,yFmt:(v,d)=>fmt(v,d)+' °C',ml:50,series:[
+    {type:'band',x,y:p10,y2:p90,color:'#8a8a8a',op:.22},
+    {type:'fillsign',x,y:T,ref:Tn,up:'#c9533f',down:'#3f73c9',op:.5},
+    {type:'line',x,y:Tn,color:'#9a9a9a',dash:'4 3',width:1.3,name:'Norma',fmt:v=>fmt(v)+' °C'},
+    {type:'line',x,y:T,color:'#f3f2ef',width:1.4,name:'Średnia doby',fmt:(v,i)=>fmt(v)+' °C ('+fmtZ(ok(v)&&ok(Tn[i])?v-Tn[i]:null)+')',gap:86400*2},
+  ]});
+  // opad narastająco
+  let c1=0,c2=0; const R=[],Rn=[]; for(const i of ix){ const rr=daily.rain?.[i]; if(ok(rr)){ c1+=rr; c2+=N.rain[idx366(daily.d[i])]||0; } R.push(+c1.toFixed(1)); Rn.push(+c2.toFixed(1)); }
+  wykres($('wykRn'),{x:[x0,x1],height:300,xTicks:osX,tipTitle:tTitle,yFmt:(v,d)=>fmt(v,d)+' mm',ml:56,include:[0],series:[
+    {type:'fillsign',x,y:R,ref:Rn,up:'#2a64a8',down:'#7a5418',op:.85},
+    {type:'line',x,y:Rn,color:'#bbb',dash:'4 3',width:1.3,name:'Norma',fmt:v=>fmt(v)+' mm'},
+    {type:'line',x,y:R,color:'#f3f2ef',width:1.8,name:'U Ciebie',fmt:v=>fmt(v)+' mm'},
+  ]});
+  // usłonecznienie
+  const S=ix.map(i=>daily.sun?.[i]??null), Sn=dd.map(d=>N.sun[idx366(d)]), Si=dd.map(d=>IM[d]?IM[d].s:null);
+  const pierwszySun = daily.sun ? daily.d[daily.sun.findIndex(ok)] : null;
+  $('opisSlonca').textContent=`Słupki: godziny ze słońcem u Ciebie, szacowane z czujnika promieniowania (czas, gdy promieniowanie przekracza ${Math.round((D.meta.prog_slonca||.5)*100)}% wartości przy bezchmurnym niebie). Zimą, przy nisko stojącym Słońcu, oszacowanie jest zaniżone. Przerywana: norma 1991–2020 (${D.meta.imgw_stacja||'IMGW'}). Kropki: usłonecznienie zmierzone przez IMGW.${pierwszySun?' Dane od '+dStrPl(pierwszySun,true)+'.':''}`;
+  wykres($('wykSn'),{x:[x0,x1],height:300,xTicks:osX,tipTitle:tTitle,yFmt:(v,d)=>fmt(v,d)+' h',include:[0],series:[
+    {type:'bar',x,y:S,bw:86400,color:ORANGE,name:'U Ciebie',fmt:v=>fmt(v)+' h'},
+    {type:'line',x,y:Sn,color:'#bbb',dash:'4 3',width:1.2,name:'Norma',fmt:v=>fmt(v)+' h'},
+    {type:'dots',x,y:Si,color:'#f3f2ef',r:2,name:'IMGW',fmt:v=>fmt(v)+' h'},
+  ]});
+  // energia
+  const E=ix.map(i=>daily.energy?.[i]??null), E7=E.map((_,i)=>{ const w=E.slice(Math.max(0,i-6),i+1).filter(ok); return w.length>=4? w.reduce((p,q)=>p+q,0)/w.length : null; });
+  const pierwszyE = daily.energy ? daily.d[daily.energy.findIndex(ok)] : null;
+  $('opisEnergii').textContent=`Dobowa suma promieniowania całkowitego na powierzchnię poziomą, w kWh/m². Linia: średnia z 7 dni.${pierwszyE?' Dane od '+dStrPl(pierwszyE,true)+'.':''}`;
+  wykres($('wykEn'),{x:[x0,x1],height:300,xTicks:osX,tipTitle:tTitle,include:[0],series:[
+    {type:'bar',x,y:E,bw:86400,color:ORANGE,name:'Energia',fmt:v=>fmt(v,2)+' kWh/m²'},
+    {type:'line',x,y:E7,color:'#f3f2ef',width:1.8,name:'Średnia 7 dni',fmt:v=>fmt(v,2)+' kWh/m²'},
+  ]});
+  // miesiące
+  const mies={}; for(const i of ix){ const k=daily.d[i].slice(0,7); (mies[k]=mies[k]||[]).push(i); }
+  const klucze=Object.keys(mies).sort(), xm=klucze.map((_,i)=>i);
+  const mst=klucze.map(k=>statystyki(mies[k]));
+  const osKat=(lab)=>((a0,a1)=>xm.filter(i=>i>=a0&&i<=a1).filter(i=>xm.length<=12||i%2===0).map(i=>[i,lab[i]]));
+  const etyk=klucze.map(k=>MIES[+k.slice(5)-1]+(lataSet(klucze)>1?' '+k.slice(2,4):''));
+  const kolT=v=>v>=0?'#d4502e':'#3b74c9';
+  const tt=i=>{ const k=klucze[i]; return MIES_PELNE[+k.slice(5)-1]+' '+k.slice(0,4); };
+  wykres($('mT'),{x:[-.6,xm.length-.4],height:240,xTicks:osKat(etyk),tipTitle:tt,zero:true,include:[0],yFmt:(v,d)=>fmt(v,d)+' °C',tol:.5,series:[{type:'bar',x:xm,y:mst.map(s=>s.n?(s.sT-s.sN)/s.n:null),bw:1,frac:.7,maxW:56,color:kolT,name:'Odchylenie',fmt:v=>fmtZ(v)+' °C'}]});
+  wykres($('mR'),{x:[-.6,xm.length-.4],height:240,xTicks:osKat(etyk),tipTitle:tt,include:[0,100],hlines:[100],yFmt:(v,d)=>fmt(v,d)+'%',tol:.5,series:[{type:'bar',x:xm,y:mst.map(s=>s.deszczN?100*s.deszcz/s.deszczN:null),base:100,bw:1,frac:.7,maxW:56,color:v=>v>=100?'#3b8eea':'#c98a2e',name:'Opad',fmt:(v,i)=>fmt(v,0)+`% (${fmt(mst[i].deszcz)} mm)`}]});
+  wykres($('mS'),{x:[-.6,xm.length-.4],height:240,xTicks:osKat(etyk),tipTitle:tt,include:[50,100],hlines:[100],yFmt:(v,d)=>fmt(v,d)+'%',tol:.5,series:[{type:'bar',x:xm,y:mst.map(s=>s.sloneN&&s.nS>=10?100*s.slonce/s.sloneN:null),base:100,bw:1,frac:.7,maxW:56,color:v=>v>=100?ORANGE:'#6a6a6a',name:'Usłonecznienie',fmt:(v,i)=>fmt(v,0)+`% (${fmt(mst[i].slonce,0)} h)`}]});
+}
+function reczWOkresie(a,b){ let s=0,sn=0,n=0; const [y0,m0]=a.split('-').map(Number), [y1,m1]=b.split('-').map(Number);
+  for(let y=y0,m=m0; y<y1||(y===y1&&m<=m1); m===12?(y++,m=1):m++){ const ld=`${y}-${pad(m)}-${pad(new Date(Date.UTC(y,m,0)).getUTCDate())}`; if(`${y}-${pad(m)}-01`<a||ld>b) continue; const r=RECZ[`${y}-${pad(m)}`]; if(ok(r)){ s+=r; sn+=normaMies(y,m); n++; } }
+  return n? `; deszczomierz ręczny: ${fmt(s,1)} mm (${fmt(100*s/sn,0)}% normy, ${n} mies.)` : ''; }
+function lataSet(kl){ return new Set(kl.map(k=>k.slice(0,4))).size; }
+$('nOd').onchange=()=>{ sn.od=$('nOd').value; rysujNormy(); };
+$('nDo').onchange=()=>{ sn.doo=$('nDo').value; rysujNormy(); };
+
+// ── TABELE
+function tabelaLat(){
+  if(!N){ $('tabLata').innerHTML='<div class="empty">Brak norm IMGW</div>'; return; }
+  const w=[];
+  for(const y of [...lataArch].reverse()){ const s=statystyki(dniOkresu(`${y}-01-01`,`${y}-12-31`)); w.push(`<tr><td><b>${y}</b></td><td>${s.n}</td><td><b>${fmtZ(s.n?(s.sT-s.sN)/s.n:null)}</b></td><td>${s.ciep}</td><td>${s.chl}</td><td>${fmt(s.deszcz)}</td><td>${fmt(s.deszczN)}</td><td><b>${fmt(s.deszczN?100*s.deszcz/s.deszczN:null,0)}%</b></td></tr>`); }
+  $('tabLata').innerHTML=`<table><thead><tr><th>Rok</th><th>Dni z danymi</th><th>Odchylenie temp. °C</th><th>Dni cieplejsze od normy</th><th>Dni chłodniejsze od normy</th><th>Opad mm</th><th>Norma opadu mm</th><th>Opad % normy</th></tr></thead><tbody>${w.join('')}</tbody></table>`;
+}
+function tabelaImgw(){
+  const nm=D.meta.imgw_stacja||'IMGW';
+  $('hImgw').textContent=`Twoja stacja a stacja IMGW ${nm}`;
+  if(!D.imgw){ $('tabImgw').innerHTML='<div class="empty">Brak danych IMGW</div>'; return; }
+  const mies={};
+  daily.d.forEach((d,i)=>{ const im=IM[d]; if(!im) return; const k=d.slice(0,7); const o=mies[k]=mies[k]||{n:0,t1:0,t2:0,nt:0,r1:0,r2:0,nr:0,s1:0,s2:0,ns:0};
+    const t=daily.tavg?.[i]; if(ok(t)&&ok(im.t)){ o.nt++; o.t1+=t; o.t2+=im.t; }
+    const r=daily.rain?.[i]; if(ok(r)&&ok(im.r)){ o.nr++; o.r1+=r; o.r2+=im.r; }
+    const s=daily.sun?.[i]; if(ok(s)&&ok(im.s)){ o.ns++; o.s1+=s; o.s2+=im.s; }
+    o.n=Math.max(o.nt,o.nr); });
+  const w=Object.keys(mies).sort().reverse().filter(k=>mies[k].n>0).map(k=>{ const o=mies[k];
+    return `<tr><td>${k}</td><td>${o.n}</td><td>${o.nt?fmt(o.t1/o.nt):'—'}</td><td>${o.nt?fmt(o.t2/o.nt):'—'}</td><td><b>${o.nt?fmtZ((o.t1-o.t2)/o.nt):'—'}</b></td><td>${o.nr?fmt(o.r1):'—'}</td><td>${o.nr?fmt(o.r2):'—'}</td><td>${ok(RECZ[k])?fmt(RECZ[k]):'—'}</td><td>${o.ns?fmt(o.s1):'—'}</td><td>${o.ns?fmt(o.s2):'—'}</td></tr>`; });
+  $('tabImgw').innerHTML = w.length ? `<table><thead><tr><th>Miesiąc</th><th>Dni wspólne</th><th>Śr. °C u Ciebie</th><th>Śr. °C ${esc(nm)}</th><th>Różnica °C</th><th>Opad mm u Ciebie</th><th>Opad mm ${esc(nm)}</th><th>Opad mm ręczny</th><th>Słońce h u Ciebie</th><th>Słońce h ${esc(nm)}</th></tr></thead><tbody>${w.join('')}</tbody></table>` : '<div class="empty">Brak wspólnych dni — IMGW publikuje dane z opóźnieniem</div>';
+}
+
+// ── OPAD RĘCZNY
+function opadReczny(){
+  const sec=$('sekcjaReczny'); if(!(D.reczny||[]).length){ sec.style.display='none'; return; }
+  const lata=[...new Set(D.reczny.map(r=>r[0]))].sort();
+  // narastająco od 1 stycznia (lata z danymi od stycznia)
+  const ser=[], leg=[];
+  if(N){ let c=0; const v=N.rain.map(r=>(c+=r||0,+c.toFixed(1))); ser.push({type:'line',x:[...Array(366).keys()],y:v,color:'#999',dash:'4 3',width:1.3,name:'Norma',fmt:q=>fmt(q,0)+' mm'}); }
+  for(const y of lata){ if(!ok(RECZ[`${y}-01`])) continue; let c=0; const x=[0],v=[0]; for(let m=1;m<=12;m++){ const r=RECZ[`${y}-${pad(m)}`]; if(!ok(r)) break; c+=r; x.push(idx366(`${y}-${pad(m)}-${pad(new Date(Date.UTC(2000,m,0)).getUTCDate())}`)); v.push(+c.toFixed(1)); }
+    ser.push({type:'line',x,y:v,color:kolRoku2(y,lata),name:String(y),width:2,endDot:true,fmt:q=>fmt(q,0)+' mm'}); leg.push([String(y),kolRoku2(y,lata)]); }
+  if(N) leg.push(['Norma','#999',true]);
+  legenda($('legRecz'),leg);
+  const ticks=(a,b)=>[0,59,120,181,243,304].map((d,i)=>[d,MIES[i*2]]);
+  wykres($('wykRecz'),{x:[0,365],height:260,xTicks:ticks,include:[0],tol:20,tipTitle:i=>{ const dt=new Date(Date.UTC(2000,0,1+i)); return `do ${dt.getUTCDate()} ${MIES[dt.getUTCMonth()]}`; },yFmt:(v,d)=>fmt(v,d),series:ser});
+  // roczne sumy vs norma
+  const xs=lata.map((_,i)=>i), suma=[], pr=[];
+  lata.forEach(y=>{ let s=0,n=0,sn=0; for(let m=1;m<=12;m++){ const r=RECZ[`${y}-${pad(m)}`]; if(ok(r)){ s+=r; sn+=normaMies(y,m)||0; n++; } } suma.push(n?s:null); pr.push(sn?100*s/sn:null); });
+  legenda($('legReczM'),[['Suma roczna (miesiące z pomiarem) – % normy','#3b8eea']]);
+  wykres($('wykReczM'),{x:[-.6,lata.length-.4],height:260,xTicks:()=>xs.map(i=>[i,String(lata[i])]),include:[0,100],hlines:[100],tol:.5,tipTitle:i=>String(lata[i]),yFmt:(v,d)=>fmt(v,0)+'%',series:[{type:'bar',x:xs,y:pr,base:100,bw:1,frac:.6,maxW:70,color:v=>v>=100?'#3b8eea':'#c98a2e',name:'% normy',fmt:(v,i)=>fmt(v,0)+`% (${fmt(suma[i],1)} mm)`}]});
+  // tabela
+  const kol=(r,n)=>{ if(!ok(r)||!n) return ''; const q=r/n; const a=Math.min(.55,Math.abs(q-1)*.45); return `background:${q>=1?`rgba(59,142,234,${a})`:`rgba(160,105,30,${a})`}`; };
+  let h='<table class="mono"><thead><tr><th>Rok</th>'+MIES.map(m=>`<th>${m}</th>`).join('')+'<th>Suma</th><th>Norma</th><th>% normy</th></tr></thead><tbody>';
+  for(const y of [...lata].reverse()){
+    let s=0,sn=0,n=0; h+=`<tr><td><b>${y}</b></td>`;
+    for(let m=1;m<=12;m++){ const r=RECZ[`${y}-${pad(m)}`], nm=normaMies(y,m); if(ok(r)){ s+=r; sn+=nm||0; n++; } h+=`<td style="${kol(r,nm)}" title="${ok(r)&&nm?Math.round(100*r/nm)+'% normy':''}">${ok(r)?fmt(r,1):''}</td>`; }
+    h+=`<td><b>${n?fmt(s,1):'—'}</b></td><td>${n?fmt(sn,1):'—'}</td><td><b>${sn?fmt(100*s/sn,0)+'%':'—'}</b></td></tr>`;
+    const auto=[]; let sa=0,na=0; for(let m=1;m<=12;m++){ const a=autoMies(y,m); auto.push(a); if(ok(a)&&ok(RECZ[`${y}-${pad(m)}`])){ sa+=a; na++; } }
+    if(auto.some(ok)) h+=`<tr><td style="color:var(--muted);font-size:12px">↳ automat</td>`+auto.map(a=>`<td style="color:var(--muted);font-size:12px">${ok(a)?fmt(a,1):''}</td>`).join('')+`<td colspan="3" style="color:var(--muted);font-size:12px">${na?`w ${na} mies.: ${fmt(sa,1)} mm`:''}</td></tr>`;
+  }
+  if(N){ h+='<tr><td style="color:var(--muted)">norma</td>'; let t=0; for(let m=1;m<=12;m++){ const nm=normaMies(2001,m); t+=nm; h+=`<td style="color:var(--muted)">${fmt(nm,0)}</td>`; } h+=`<td style="color:var(--muted)">${fmt(t,0)}</td><td></td><td></td></tr>`; }
+  $('tabRecz').innerHTML=h+'</tbody></table>';
+}
+function kolRoku2(y,lata){ return KOL_LAT[(lata.length-1-lata.indexOf(y))%KOL_LAT.length]; }
+
+// ── WYKRESY WIELOLETNIE
+const kolRoku = y => KOL_LAT[(lataArch.length-1-lataArch.indexOf(y))%KOL_LAT.length];
+const osMies12 = (a,b)=>[0,2,4,6,8,10].map(i=>[i,MIES[i]]);
+function srMiesiac(pole,agg){
+  const out={}; daily.d.forEach((d,i)=>{ const v=daily[pole]?.[i]; if(!ok(v)) return; const y=+d.slice(0,4), m=+d.slice(5,7)-1; const o=(out[y]=out[y]||Array.from({length:12},()=>[]))[m]; o.push(v); });
+  const r={}; for(const y in out) r[y]=out[y].map(a=>a.length? (agg==='max'?Math.max(...a):a.reduce((p,q)=>p+q,0)/a.length) : null); return r;
+}
+function wykresMT(){
+  const sr=srMiesiac('tavg'), lata=Object.keys(sr).map(Number);
+  legenda($('legMT'),lata.map(y=>[String(y),kolRoku(y)]));
+  wykres($('wykMT'),{x:[-.3,11.3],height:250,xTicks:osMies12,zero:true,tol:.5,tipTitle:i=>MIES_PELNE[i],yFmt:(v,d)=>fmt(v,d),series:lata.map(y=>({type:'line',x:[...Array(12).keys()],y:sr[y],color:kolRoku(y),name:String(y),width:2,endDot:y===lata[lata.length-1],fmt:v=>fmt(v)+' °C'}))});
+}
+function wykresOR(){
+  const seria=[], leg=[];
+  for(const y of lataArch){ const i0=dIdx[`${y}-01-01`]??daily.d.findIndex(d=>d.startsWith(String(y))); if(i0<0) continue; if(daily.d[i0]>`${y}-01-07`) continue;
+    const x=[],v=[]; let c=0; for(let i=i0;i<daily.d.length&&daily.d[i].startsWith(String(y));i++){ const r=daily.rain?.[i]; if(ok(r)) c+=r; x.push(idx366(daily.d[i])); v.push(+c.toFixed(1)); }
+    seria.push({type:'line',x,y:v,color:kolRoku(y),name:String(y),width:2,endDot:true,fmt:q=>fmt(q)+' mm'}); leg.push([String(y),kolRoku(y)]); }
+  if(N){ let c=0; const v=N.rain.map(r=>(c+=r||0, +c.toFixed(1))); seria.unshift({type:'line',x:[...Array(366).keys()],y:v,color:'#999',dash:'4 3',width:1.3,name:'Norma',fmt:q=>fmt(q)+' mm'}); leg.push(['Norma','#999',true]); }
+  legenda($('legOR'),leg);
+  const ticks=(a,b)=>[0,59,120,181,243,304].map((d,i)=>[d,MIES[i*2]]);
+  wykres($('wykOR'),{x:[0,365],height:250,xTicks:ticks,include:[0],tol:3,tipTitle:i=>{ const dt=new Date(Date.UTC(2000,0,1+i)); return `${dt.getUTCDate()} ${MIES[dt.getUTCMonth()]}`; },yFmt:(v,d)=>fmt(v,d),series:seria});
+}
+const sw={tryb:'avg',jedn:'ms'};
+function wykresW(){
+  segment($('wiatrTryb'),[['avg','Średnia prędkość'],['max','Najsilniejszy poryw']],sw.tryb,v=>{sw.tryb=v; wykresW();});
+  segment($('wiatrJedn'),[['ms','m/s'],['kmh','km/h']],sw.jedn,v=>{sw.jedn=v; wykresW();});
+  const sr=srMiesiac(sw.tryb==='avg'?'wind':'gust', sw.tryb==='avg'?'avg':'max'), lata=Object.keys(sr).map(Number), k=sw.jedn==='kmh'?3.6:1, j=sw.jedn==='kmh'?'km/h':'m/s';
+  legenda($('legW'),lata.map(y=>[String(y),kolRoku(y)]));
+  wykres($('wykW'),{x:[-.3,11.3],height:250,xTicks:osMies12,tol:.5,tipTitle:i=>MIES_PELNE[i],yFmt:(v,d)=>fmt(v,d),series:lata.map(y=>({type:'line',x:[...Array(12).keys()],y:sr[y].map(v=>ok(v)?v*k:null),color:kolRoku(y),name:String(y),width:2,endDot:y===lata[lata.length-1],fmt:v=>fmt(v)+' '+j}))});
+}
+
+// ── KALENDARZ
+const sk={tryb:'t'};
+function kolorSkali(v,lo,mid,hi){ const c1=[63,115,201], c2=[110,110,110], c3=[214,74,48]; let a,b,t; if(v<=mid){ a=c1;b=c2;t=(v-lo)/(mid-lo); } else { a=c2;b=c3;t=(v-mid)/(hi-mid); } t=Math.max(0,Math.min(1,t)); return `rgb(${a.map((x,i)=>Math.round(x+(b[i]-x)*t)).join(',')})`; }
+function kalendarz(){
+  segment($('kalTryb'),[['t','Temperatura'],['d','Odchylenie od normy']],sk.tryb,v=>{sk.tryb=v; kalendarz();});
+  $('opisKal').textContent = sk.tryb==='t' ? 'Każdy kwadrat to jedna doba, tygodnie od poniedziałku. Kolor od niebieskiego (zimno) przez szary (ok. 8 °C) do czerwonego (ciepło).' : 'Odchylenie średniej temperatury doby od normy 1991–2020: niebieski chłodniej, czerwony cieplej (skala ±8 °C).';
+  const el=$('kalendarz'), W=Math.max(320,el.clientWidth||900), cs=Math.max(6,Math.min(19,(W-70)/54)), g=2, H1=7*(cs)+22;
+  let s=`<svg width="100%" viewBox="0 0 ${W} ${lataArch.length*(H1+14)}" style="height:${lataArch.length*(H1+14)}px">`;
+  [...lataArch].reverse().forEach((y,yi)=>{
+    const oy=yi*(H1+14), jan1=Date.UTC(y,0,1)/1000, wd0=(new Date(jan1*1000).getUTCDay()+6)%7;
+    s+=`<text x="0" y="${oy+18+3.5*cs}" fill="#ecebe8" style="font:600 13px var(--sans)">${y}</text>`;
+    for(let m=0;m<12;m++){ const t=Date.UTC(y,m,1)/1000, dn=Math.round((t-jan1)/86400), col=Math.floor((dn+wd0)/7); s+=`<text class="ax" x="${56+col*cs}" y="${oy+12}">${MIES[m]}</text>`; }
+    const dniR=(Date.UTC(y+1,0,1)-Date.UTC(y,0,1))/864e5;
+    for(let dn=0;dn<dniR;dn++){ const dt=new Date((jan1+dn*86400)*1000), ds=`${y}-${pad(dt.getUTCMonth()+1)}-${pad(dt.getUTCDate())}`, col=Math.floor((dn+wd0)/7), row=(dn+wd0)%7;
+      const i=dIdx[ds], t=i!==undefined?daily.tavg?.[i]:null; let fill='#1a1a1a', stroke='#2a2a2a', v=null;
+      if(ok(t)){ if(sk.tryb==='t'){ v=t; fill=kolorSkali(t,-10,8,25); } else if(N){ v=t-nt(ds); fill=kolorSkali(v,-8,0,8); } stroke='none'; }
+      s+=`<rect x="${56+col*cs}" y="${oy+18+row*cs}" width="${cs-g}" height="${cs-g}" rx="2" fill="${fill}" stroke="${stroke}" data-d="${ds}" data-v="${ok(v)?v.toFixed(1):''}"/>`; }
+  });
+  el.innerHTML=s+'</svg>';
+  el.querySelector('svg').onmousemove=e=>{ const r=e.target; if(r.tagName!=='rect'||!r.dataset.v){ ukryjTip(); return; } pokazTip(e,`<div class="h">${dStrPl(r.dataset.d,true)}</div><b>${sk.tryb==='t'?fmt(+r.dataset.v)+' °C':fmtZ(+r.dataset.v)+' °C od normy'}</b>`); };
+  el.querySelector('svg').onmouseleave=ukryjTip;
+}
+
+// ── RÓŻA WIATRÓW
+const sr2={jedn:'ms'};
+function roza(){
+  segment($('rozaJedn'),[['ms','m/s'],['kmh','km/h']],sr2.jedn,v=>{sr2.jedn=v; roza();});
+  const KL=[[.5,1,'#d7dde6'],[1,2,'#8fa6c4'],[2,3,BLUE],[3,1e9,'#050505']];
+  const lab=sr2.jedn==='kmh'?['1,8–3,5 km/h','3,6–7,1 km/h','7,2–10,7 km/h','od 10,8 km/h']:['0,5–0,9 m/s','1–1,9 m/s','2–2,9 m/s','od 3 m/s'];
+  legenda($('legRoza'),KL.map((k,i)=>[lab[i],k[2]]));
+  const x=mid.t, w=col(mid,'wind'), d=col(mid,'dir'), od=ostTs-365*86400;
+  const cnt=Array.from({length:16},()=>[0,0,0,0]); let cisza=0, n=0;
+  for(let i=0;i<x.length;i++){ if(x[i]<od||!ok(w[i])) continue; n++; if(w[i]<.5||!ok(d[i])){ cisza++; continue; } const sek=Math.round(d[i]/22.5)%16; const k=KL.findIndex(q=>w[i]>=q[0]&&w[i]<q[1]); cnt[sek][k]++; }
+  const el=$('roza'); if(!n){ el.innerHTML='<div class="empty">Brak danych o wietrze</div>'; return; }
+  const W=Math.min(520,Math.max(300,el.clientWidth||460)), C=W/2, R=C-40, r0=R*.16;
+  const proc=cnt.map(a=>a.map(v=>100*v/n)), mx=Math.max(...proc.map(a=>a.reduce((p,q)=>p+q,0)),1);
+  const krokP=mx>30?10:mx>12?5:mx>6?2:1, top=Math.ceil(mx/krokP)*krokP, rr=p=>r0+(R-r0)*p/top;
+  let s=`<svg width="100%" viewBox="0 0 ${W} ${W}" style="max-width:${W}px;height:auto;display:block;margin:0 auto">`;
+  for(let p=krokP;p<=top;p+=krokP){ s+=`<circle cx="${C}" cy="${C}" r="${rr(p)}" fill="none" stroke="#3a3a3a"/><text class="ax" x="${C+rr(p)*Math.cos(-Math.PI/4.6)+4}" y="${C+rr(p)*Math.sin(-Math.PI/4.6)}">${p} %</text>`; }
+  for(let i=0;i<16;i++){ const a=(i*22.5-90)*Math.PI/180; s+=`<line x1="${C+r0*Math.cos(a)}" y1="${C+r0*Math.sin(a)}" x2="${C+R*Math.cos(a)}" y2="${C+R*Math.sin(a)}" stroke="#333"/><text class="ax" x="${C+(R+20)*Math.cos(a)}" y="${C+(R+20)*Math.sin(a)+4}" text-anchor="middle" style="${i%4===0?'fill:#ecebe8;font-weight:600':''}">${KIER[i]}</text>`; }
+  const wedge=(i,p1,p2,kol,tx)=>{ const a1=((i-.42)*22.5-90)*Math.PI/180, a2=((i+.42)*22.5-90)*Math.PI/180, q1=rr(p1), q2=rr(p2); return `<path d="M${C+q1*Math.cos(a1)},${C+q1*Math.sin(a1)} L${C+q2*Math.cos(a1)},${C+q2*Math.sin(a1)} A${q2},${q2} 0 0 1 ${C+q2*Math.cos(a2)},${C+q2*Math.sin(a2)} L${C+q1*Math.cos(a2)},${C+q1*Math.sin(a2)} A${q1},${q1} 0 0 0 ${C+q1*Math.cos(a1)},${C+q1*Math.sin(a1)}Z" fill="${kol}" stroke="#2a2a2a" stroke-width=".6" data-t="${tx}"/>`; };
+  for(let i=0;i<16;i++){ let c=0; proc[i].forEach((p,k)=>{ if(p<=0) return; s+=wedge(i,c,c+p,KL[k][2],`${KIER[i]}, ${lab[k]}: ${fmt(p)} %`); c+=p; }); }
+  s+=`<circle cx="${C}" cy="${C}" r="${r0}" fill="#1d1d1d" stroke="#555"/><text x="${C}" y="${C}" text-anchor="middle" fill="#ecebe8" style="font:600 14px var(--sans)">${fmt(100*cisza/n,0)} %</text><text class="ax" x="${C}" y="${C+15}" text-anchor="middle">cisza</text></svg>`;
+  el.innerHTML=s;
+  el.querySelector('svg').onmousemove=e=>{ const t=e.target.dataset&&e.target.dataset.t; if(t) pokazTip(e,esc(t)); else ukryjTip(); };
+  el.querySelector('svg').onmouseleave=ukryjTip;
+}
+
+// ── REKORDY
+function rekordy(){
+  const ext=(pole,znak)=>{ const a=daily[pole]; if(!a) return null; let b=-1; for(let i=0;i<a.length;i++) if(ok(a[i])&&(b<0||(znak>0?a[i]>a[b]:a[i]<a[b]))) b=i; return b<0?null:[a[b],daily.d[b]]; };
+  const R=[['Najwyższa temperatura','tmax',1,'°C',1],['Najniższa temperatura','tmin',-1,'°C',1],['Najcieplejsza doba (średnio)','tavg',1,'°C',1],['Najzimniejsza doba (średnio)','tavg',-1,'°C',1],['Największy opad dobowy','rain',1,'mm',1],['Najsilniejszy poryw','gust',1,'m/s',1],['Najwyższe ciśnienie (średnia doby)','press',1,'hPa',1],['Najniższe ciśnienie (średnia doby)','press',-1,'hPa',1],['Najsilniejsze słońce','solarmax',1,'W/m²',0],['Najwyższy indeks UV','uvi',1,'',0]];
+  const w=R.map(([n,p,z,j,dd])=>{ const e=ext(p,z); return e?`<tr><td>${n}</td><td><b>${fmt(e[0],dd)}</b></td><td>${j}</td><td>${dStrPl(e[1],true)}</td></tr>`:''; }).join('');
+  $('rekordy').innerHTML=`<table><thead><tr><th>Rekord</th><th>Wartość</th><th>Jedn.</th><th>Data</th></tr></thead><tbody>${w}</tbody></table>`;
+}
+
+function wszystko(){ rysujPrzebieg(); rysujNormy(); tabelaLat(); tabelaImgw(); opadReczny(); wykresMT(); wykresOR(); wykresW(); kalendarz(); roza(); rekordy(); }
+ustawPreset('48h');
+wszystko();
+$('stopka').textContent = `Archiwum od ${daily.d.length?dStrPl(daily.d[0],true):'—'} · wygenerowano ${krotko(D.meta.wygenerowano)} · dane: Ecowitt Cloud, IMGW-PIB (danepubliczne.imgw.pl)`;
+let rt; addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(wszystko,250); });
+})();
+</script>
+</body>
+</html>
