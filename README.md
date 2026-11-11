@@ -8,6 +8,7 @@ Co godzinę GitHub Actions:
 Pliki w tym repozytorium:
 - `stacja_pogodowa.py`, `szablon_dashboard.html` – skrypt i wygląd strony,
 - `weathercloud/` – eksporty CSV z poprzedniej stacji VEVOR (Weathercloud),
+- `instalacja_fotowoltaiczna.xlsx` – miesięczne zestawienie produkcji i zużycia prądu (fotowoltaika). Daty i moc instalacji odczytywane są z dopisków w arkuszu w formacie „DD.MM.RRRR … X kW”. Po dopisaniu miesiąca wgraj nową wersję pliku.
 - `ilość opadów.xlsx` – miesięczne sumy z deszczomierza ręcznego. Po dopisaniu miesiąca wgraj nową wersję pliku (Add file → Upload files). Strona odświeży się po kilku minutach.
 
 Klucze API są w sekretach repozytorium (Settings → Secrets and variables → Actions):

@@ -135,6 +135,8 @@ class Konfig:
         self.wc_wilgotnosc = g("weathercloud", "uwzglednij_wilgotnosc", "nie").lower() in ("tak", "1", "yes")
         self.wc_nazwa = g("weathercloud", "nazwa", "VEVOR")
         self.plik_opadow = g("opad_reczny", "plik", "")
+        self.plik_pv = g("fotowoltaika", "plik", "")
+        self.pv_m2 = float(g("fotowoltaika", "powierzchnia_m2", "0") or 0)
         if not (self.app_key and self.api_key and self.mac):
             sys.exit("Uzupełnij application_key, api_key i mac w konfiguracja.ini")
 
@@ -149,6 +151,8 @@ def baza() -> sqlite3.Connection:
                                        PRIMARY KEY(metric, ts)) WITHOUT ROWID;
         CREATE TABLE IF NOT EXISTS meta(k TEXT PRIMARY KEY, v TEXT);
         CREATE TABLE IF NOT EXISTS opad_reczny(rok INTEGER, mies INTEGER, mm REAL, PRIMARY KEY(rok, mies));
+        CREATE TABLE IF NOT EXISTS pv(rok INTEGER, mies INTEGER, prod REAL, zuz REAL, pob REAL, auto REAL, odd REAL,
+                                      PRIMARY KEY(rok, mies));
         CREATE TABLE IF NOT EXISTS imgw(d TEXT PRIMARY KEY, tmax REAL, tmin REAL, tavg REAL,
                                         rain REAL, sun REAL);
     """)
@@ -578,6 +582,68 @@ def importuj_opad_reczny(cfg: Konfig, con) -> None:
     log(f"Opad ręczny: {p.name} — {len(dane)} miesięcy")
 
 
+
+# ───────────────────────── fotowoltaika (arkusz z miesięcznymi zestawieniami) ─────────────────────────
+
+PV_WIERSZE = [("produkcja", "prod"), ("zuzycie", "zuz"), ("pobrana", "pob"), ("zuzyta bezposrednio", "auto"),
+              ("oddana", "odd")]
+
+
+def importuj_pv(cfg: Konfig, con) -> None:
+    p = KATALOG / cfg.plik_pv if cfg.plik_pv else None
+    if not p or not p.exists():
+        kand = [x for x in KATALOG.glob("*.xlsx") if "fotowolt" in norm_nazwa(x.name).lower() or "pv" == x.stem.lower()]
+        p = kand[0] if kand else None
+    if not p:
+        return
+    podpis = f"{p.name}-{hashlib.sha1(p.read_bytes()).hexdigest()}"
+    if meta_get(con, "pv_plik") == podpis:
+        return
+    wiersze = czytaj_xlsx(p)
+    dane: dict[tuple[int, int], dict] = {}
+    zdarzenia = []
+    rok = None
+    for w in wiersze:
+        for v in w:
+            if isinstance(v, str):
+                m = re.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", v)
+                if m:
+                    try:
+                        d = date(int(m.group(3)), int(m.group(2)), int(m.group(1))).isoformat()
+                    except ValueError:
+                        continue
+                    kw = re.search(r"(\d+(?:[.,]\d+)?)\s*kW", v)
+                    zdarzenia.append({"d": d, "tekst": re.sub(r"\s+", " ", v[m.end():]).strip(" -–:"),
+                                      "kw": float(kw.group(1).replace(",", ".")) if kw else None})
+        if not w or not isinstance(w[0], str):
+            continue
+        etyk = norm_nazwa(w[0]).lower()
+        m = re.match(r"produkcja\s+(\d{4})", etyk)
+        if m:
+            rok = int(m.group(1))
+        if rok is None:
+            continue
+        for pref, klucz in PV_WIERSZE:
+            if etyk.startswith(pref):
+                for mies in range(1, 13):
+                    v = w[mies] if mies < len(w) else None
+                    if isinstance(v, (int, float)):
+                        dane.setdefault((rok, mies), {})[klucz] = float(v)
+                break
+    rekordy = []
+    for (r, m), d in sorted(dane.items()):
+        if "prod" not in d:          # miesiąc bez produkcji = jeszcze bez danych
+            continue
+        rekordy.append((r, m, d.get("prod"), d.get("zuz"), d.get("pob"), d.get("auto"), d.get("odd")))
+    con.execute("DELETE FROM pv")
+    con.executemany("INSERT INTO pv VALUES(?,?,?,?,?,?,?)", rekordy)
+    con.commit()
+    meta_set(con, "pv_zdarzenia", sorted(zdarzenia, key=lambda z: z["d"]))
+    meta_set(con, "pv_plik", podpis)
+    log(f"Fotowoltaika: {p.name} — {len(rekordy)} miesięcy, zdarzenia: "
+        + "; ".join(f"{z['d']} {z['tekst']}" for z in zdarzenia))
+
+
 # ───────────────────────── obliczenia ─────────────────────────
 
 def sin_wysokosci(ts: np.ndarray, lat: float, lon: float) -> np.ndarray:
@@ -794,6 +860,16 @@ def zbuduj_dane(cfg: Konfig, con) -> dict:
         wynik["meta"]["imgw_do"] = im.d.max() if not im.empty else None
     wynik["normy"] = normy(con)
     wynik["reczny"] = [list(r) for r in con.execute("SELECT rok, mies, mm FROM opad_reczny ORDER BY rok, mies")]
+    pv = [list(r) for r in con.execute("SELECT rok, mies, prod, zuz, pob, auto, odd FROM pv ORDER BY rok, mies")]
+    if pv:
+        wynik["pv"] = {"mies": pv, "zdarzenia": meta_get(con, "pv_zdarzenia", []), "m2": cfg.pv_m2 or None}
+        im_m = pd.read_sql("SELECT d, tavg, rain, sun FROM imgw WHERE d >= ?", con, params=(f"{pv[0][0] - 1}-01-01",))
+        if not im_m.empty:
+            im_m["k"] = im_m.d.str.slice(0, 7)
+            g = im_m.groupby("k")
+            agg = pd.DataFrame({"sun": g.sun.sum(min_count=25), "n": g.sun.count()})
+            wynik["imgw_mies"] = {k: (round(float(r.sun), 1) if pd.notna(r.sun) else None)
+                                  for k, r in agg.iterrows()}
     wc = meta_get(con, "wc_zakres")
     if wc and wc[0]:
         wynik["meta"]["zrodla"] = [{"nazwa": cfg.wc_nazwa + " (Weathercloud, co 10 min)", "od": wc[0], "do": wc[1]},
@@ -836,7 +912,8 @@ def main() -> None:
             bledy.append(f"IMGW: {e}")
             log("BŁĄD IMGW:\n" + traceback.format_exc())
         meta_set(con, "bledy", bledy)
-    for nazwa, fn in (("Weathercloud", importuj_weathercloud), ("Opad ręczny", importuj_opad_reczny)):
+    for nazwa, fn in (("Weathercloud", importuj_weathercloud), ("Opad ręczny", importuj_opad_reczny),
+                      ("Fotowoltaika", importuj_pv)):
         try:
             fn(cfg, con)
         except Exception as e:

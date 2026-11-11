@@ -134,6 +134,25 @@ footer{color:#6f6b65;font-size:12px;margin-top:30px}
     <div class="scroll" id="tabRecz" style="margin-top:14px;max-height:none"></div>
   </section>
 
+  <section class="sec" id="sekcjaPV">
+    <h2>Fotowoltaika</h2>
+    <p class="sub" id="pvOpis"></p>
+    <div class="tiles" id="pvKafle"></div>
+    <div class="grid2 sec">
+      <div class="card"><h2>Produkcja i uzysk w latach</h2><p class="opis">Słupki: produkcja roczna. W tabeli uzysk z 1 kWp mocy oraz uzysk na 100 godzin słońca zmierzonego przez IMGW. Ta ostatnia kolumna nie zależy od pogody, więc jej spadek z roku na rok wskazywałby na zużycie, zabrudzenie albo awarię paneli. Rok bieżący jest niepełny.</p><div class="chart" id="pvRok"></div><div id="pvTabLata" style="overflow-x:auto;margin-top:10px"></div></div>
+      <div class="card"><h2>Produkcja w kolejnych miesiącach</h2>
+        <div class="controls" style="margin:4px 0 8px"><div class="seg" id="pvMiesTryb"></div></div>
+        <p class="opis">Każda linia to jeden rok. W trybie „na 1 kWp” lata sprzed rozbudowy (5,6 kWp) i po niej (9,8 kWp) można porównywać bezpośrednio.</p><div class="legend" id="legPvMies"></div><div class="chart" id="pvMies"></div></div>
+    </div>
+    <div class="grid2 sec">
+      <div class="card"><h2>Produkcja narastająco w roku</h2><p class="opis">Suma produkcji od 1 stycznia, na koniec każdego miesiąca.</p><div class="legend" id="legPvNar"></div><div class="chart" id="pvNar"></div></div>
+      <div class="card"><h2>Produkcja a usłonecznienie</h2><p class="opis">Każdy punkt to jeden miesiąc: uzysk z 1 kWp wobec godzin ze słońcem w IMGW. Punkty jednego roku leżące wyraźnie niżej niż pozostałe oznaczałyby słabszą pracę instalacji przy tej samej pogodzie.</p><div class="legend" id="legPvSc"></div><div class="chart" id="pvScat"></div></div>
+    </div>
+    <div class="card sec"><h2>Bilans energii z siecią</h2><p class="opis">Nad osią: zużycie domu, czyli energia z paneli zużyta od razu (pomarańczowa) i pobrana z sieci (szara). Pod osią: energia oddana do sieci (niebieska). Czerwone linie to zmiany w instalacji.</p><div class="legend" id="legPvBil"></div><div class="chart" id="pvBil"></div></div>
+    <div class="card sec"><h2>Okresy rozliczeniowe (1 grudnia – 30 listopada)</h2><p class="opis">Saldo okresu = 0,8 × energia oddana − energia pobrana (net-metering). „Z przeniesieniem” dolicza nadwyżkę z poprzednich okresów, tak jak w Twoim arkuszu, od pierwszego pełnego okresu. Rzeczywiste rozliczenie Enei może się nieco różnić. Zużycie mierzone od 14 stycznia 2021.</p><div id="pvTab" style="overflow-x:auto"></div></div>
+    <div class="card sec" id="pvPRkarta"><h2>Sprawność względem promieniowania z Twojej stacji</h2><p class="opis">Uzysk z 1 kWp podzielony przez miesięczną sumę promieniowania na powierzchnię poziomą (kWh/m²) zmierzoną przez stację. Panele są nachylone, więc zimą wskaźnik może przekraczać 1. Najwięcej mówi porównanie tych samych miesięcy w kolejnych latach.</p><div class="chart" id="pvPR"></div></div>
+  </section>
+
   <div class="grid3 sec">
     <div class="card"><h2>Średnia temperatura miesiąca</h2><p class="opis">Każda linia to jeden rok. Miesiąc bieżący liczony z dotychczasowych dni.</p><div class="legend" id="legMT"></div><div class="chart" id="wykMT"></div></div>
     <div class="card"><h2>Opad narastająco od 1 stycznia</h2><p class="opis">Suma opadów w milimetrach. Pomijane są lata, z których archiwum nie ma danych od 1 stycznia. Linia przerywana: norma 1991–2020.</p><div class="legend" id="legOR"></div><div class="chart" id="wykOR"></div></div>
@@ -168,6 +187,7 @@ const D = window.DANE;
 const $ = id => document.getElementById(id);
 const MIES = ['sty','lut','mar','kwi','maj','cze','lip','sie','wrz','paź','lis','gru'];
 const MIES_PELNE = ['styczeń','luty','marzec','kwiecień','maj','czerwiec','lipiec','sierpień','wrzesień','październik','listopad','grudzień'];
+const MIES_DOP = ['stycznia','lutego','marca','kwietnia','maja','czerwca','lipca','sierpnia','września','października','listopada','grudnia'];
 const KOL_LAT = ['#e0a21c','#e86a3a','#1fb59a','#3b8eea','#b07ce8','#d9d9d9','#e2577b','#8cc152'];
 const BLUE='#3b8eea', GREY='#7d7d7d', ORANGE='#e0a21c';
 const pad = n => String(n).padStart(2,'0');
@@ -224,7 +244,7 @@ function wykres(el,o){
   const W=Math.max(280, el.clientWidth||600), H=o.height||280, m={l:o.ml||46,r:o.mr||12,t:10,b:24};
   const pw=W-m.l-m.r, ph=H-m.t-m.b, [x0,x1]=o.x;
   let lo=Infinity, hi=-Infinity;
-  for(const s of o.series){ if(s.color==='transparent') continue; for(const k of ['y','y2']) if(s[k]) for(let i=0;i<s[k].length;i++){ const v=s[k][i]; if(ok(v) && s.x[i]>=x0-1 && s.x[i]<=x1+1){ if(v<lo) lo=v; if(v>hi) hi=v; } } if(s.type==='bar'){ lo=Math.min(lo,s.base||0); hi=Math.max(hi,s.base||0); } }
+  for(const s of o.series){ if(s.color==='transparent') continue; for(const k of ['y','y2']) if(s[k]) for(let i=0;i<s[k].length;i++){ const v=s[k][i]; if(ok(v) && s.x[i]>=x0-1 && s.x[i]<=x1+1){ if(v<lo) lo=v; if(v>hi) hi=v; } } if(s.type==='bar'){ const bs=Array.isArray(s.base)?s.base.filter(ok):[s.base||0]; for(const b of bs){ lo=Math.min(lo,b); hi=Math.max(hi,b); } } }
   for(const v of (o.include||[])){ lo=Math.min(lo,v); hi=Math.max(hi,v); }
   if(!isFinite(lo)){ el.innerHTML='<div class="empty">Brak danych w tym okresie</div>'; return; }
   const ny=nice(lo,hi,o.yTicks||5);
@@ -251,8 +271,8 @@ function wykres(el,o){
         for(const c of seg){ const d='M'+c.map(p=>f(X(p[0]))+','+f(Y(p[1]))).join('L')+'L'+c.slice().reverse().map(p=>f(X(p[0]))+','+f(Y(p[2]))).join('L')+'Z'; s+=`<path d="${d}" fill="${kol}" fill-opacity="${sr.op??.55}" stroke="none"/>`; }
       }
     } else if(sr.type==='bar'){
-      const bw=Math.min(sr.maxW||1e9, Math.max(1, (sr.bw||86400)/(x1-x0)*pw*(sr.frac||.8))), base=sr.base||0;
-      for(let i=0;i<sr.x.length;i++){ const v=sr.y[i]; if(!ok(v)||sr.x[i]<x0||sr.x[i]>x1||v===base) continue; const ya=Y(Math.max(v,base)), yb=Y(Math.min(v,base)); s+=`<rect x="${f(X(sr.x[i])-bw/2)}" y="${f(ya)}" width="${f(bw)}" height="${f(Math.max(.5,yb-ya))}" fill="${typeof sr.color==='function'?sr.color(v,i):sr.color}"/>`; }
+      const bw=Math.min(sr.maxW||1e9, Math.max(1, (sr.bw||86400)/(x1-x0)*pw*(sr.frac||.8)));
+      for(let i=0;i<sr.x.length;i++){ const v=sr.y[i], base=Array.isArray(sr.base)?(sr.base[i]||0):(sr.base||0); if(!ok(v)||sr.x[i]<x0||sr.x[i]>x1||v===base) continue; const ya=Y(Math.max(v,base)), yb=Y(Math.min(v,base)); s+=`<rect x="${f(X(sr.x[i])-bw/2)}" y="${f(ya)}" width="${f(bw)}" height="${f(Math.max(.5,yb-ya))}" fill="${typeof sr.color==='function'?sr.color(v,i):sr.color}"/>`; }
     } else if(sr.type==='dots'){
       for(let i=0;i<sr.x.length;i++){ const v=sr.y[i]; if(!ok(v)||sr.x[i]<x0||sr.x[i]>x1) continue; s+=`<circle cx="${f(X(sr.x[i]))}" cy="${f(Y(v))}" r="${sr.r||2}" fill="${sr.color}"/>`; }
     } else {
@@ -260,6 +280,7 @@ function wykres(el,o){
       if(sr.endDot){ const c=segmenty(sr.x,sr.y,gap).pop(); if(c){ const p=c[c.length-1]; s+=`<circle cx="${f(X(p[0]))}" cy="${f(Y(p[1]))}" r="3.5" fill="${sr.color}"/>`; } }
     }
   }
+  (o.vlines||[]).forEach((vl,k)=>{ if(vl.t<x0||vl.t>x1) return; s+=`<line x1="${f(X(vl.t))}" x2="${f(X(vl.t))}" y1="${m.t}" y2="${H-m.b}" stroke="#d9534f" stroke-dasharray="3 3"/><text class="ax" x="${f(X(vl.t)+4)}" y="${m.t+10+k*13}" style="fill:#e58a7a">${esc(vl.lab)}</text>`; });
   s+=`<line id="kursor" x1="0" x2="0" y1="${m.t}" y2="${H-m.b}" stroke="#bbb" stroke-dasharray="3 3" style="display:none"/></svg>`;
   el.innerHTML=s;
   const svg=el.querySelector('svg'), kur=svg.querySelector('#kursor');
@@ -529,6 +550,81 @@ function opadReczny(){
 }
 function kolRoku2(y,lata){ return KOL_LAT[(lata.length-1-lata.indexOf(y))%KOL_LAT.length]; }
 
+// ── FOTOWOLTAIKA
+const sp={tryb:'kwh'};
+function fotowoltaika(){
+  const sec=$('sekcjaPV'), PV=D.pv; if(!PV||!PV.mies.length){ sec.style.display='none'; return; }
+  const ZD=PV.zdarzenia||[], IMM=D.imgw_mies||{};
+  const mocZd=ZD.filter(z=>ok(z.kw));
+  const kwp=(y,m)=>{ const d=`${y}-${pad(m)}-15`; let k=mocZd.length?mocZd[0].kw:null; for(const z of mocZd) if(z.d<=d) k=z.kw; return k; };
+  const M=PV.mies.map(([y,m,prod,zuz,pob,au,odd])=>({y,m,k:`${y}-${pad(m)}`,prod,zuz,pob,au,odd,kwp:kwp(y,m),t:Date.UTC(y,m-1,15)/1000}));
+  M.forEach(r=>{ r.spec=ok(r.prod)&&r.kwp?r.prod/r.kwp:null; r.sun=IMM[r.k]??null; });
+  const lata=[...new Set(M.map(r=>r.y))].sort(), ost=M[M.length-1];
+  const kolPV=y=>KOL_LAT[(lata.length-1-lata.indexOf(y))%KOL_LAT.length];
+  const suma=(arr,f)=>arr.reduce((p,r)=>p+(ok(r[f])?r[f]:0),0);
+  $('pvOpis').textContent = ZD.map(z=>`${dStrPl(z.d,true)}: ${z.tekst}`).join(' · ') + ` · dane do ${MIES_DOP[ost.m-1]} ${ost.y}`;
+  // kafelki
+  const tenRok=M.filter(r=>r.y===ost.y), poprz=M.filter(r=>r.y===ost.y-1&&r.m<=ost.m);
+  const p1=suma(tenRok,'prod'), p0=suma(poprz,'prod');
+  const ost12=M.slice(-12), spec12=suma(ost12,'spec');
+  // okresy rozliczeniowe XII–XI z przenoszeniem salda (od pierwszego pełnego okresu z pomiarem zużycia)
+  const okresy={}; M.forEach(r=>{ const Y=r.m===12?r.y+1:r.y; (okresy[Y]=okresy[Y]||[]).push(r); });
+  const OK=Object.keys(okresy).map(Number).sort((a,b)=>a-b).map(Y=>{ const rr=okresy[Y].filter(r=>ok(r.zuz)&&r.zuz>0); if(!rr.length) return null;
+    const o={Y,n:rr.length,pr:suma(rr,'prod'),zu:suma(rr,'zuz'),a:suma(rr,'au'),pb:suma(rr,'pob'),od:suma(rr,'odd')}; o.sal=0.8*o.od-o.pb; return o; }).filter(Boolean);
+  let prz=null; for(const o of OK){ if(prz===null && o.n<12){ o.nar=null; continue; } o.przen=prz||0; o.nar=(prz||0)+o.sal; prz=o.nar; }
+  const biezO=OK[OK.length-1];
+  const saldo=biezO?biezO.sal:0, saldoNar=biezO?biezO.nar:null;
+  const z12=ost12.filter(r=>ok(r.zuz)&&r.zuz>0);
+  const kafle=[
+    [`Produkcja ${ost.y} (sty–${MIES[ost.m-1]})`, fmt(p1,0),'kWh', p0?`${fmtZ(100*(p1-p0)/p0,0)}% wobec ${ost.y-1} (${fmt(p0,0)} kWh)`:''],
+    ['Uzysk z 1 kWp, ostatnie 12 mies.', fmt(spec12,0),'kWh/kWp', `${MIES[ost12[0].m-1]} ${ost12[0].y} – ${MIES[ost.m-1]} ${ost.y}`],
+    ['Saldo do wykorzystania', fmtZ(ok(saldoNar)?saldoNar:saldo,0),'kWh', biezO?`bieżący okres od 1 gru: ${fmtZ(saldo,0)} kWh, przeniesione ${fmtZ(biezO.przen||0,0)} kWh`:''],
+    ['Pokrycie zużycia z PV, 12 mies.', fmt(z12.length?100*suma(z12,'au')/suma(z12,'zuz'):null,0),'%', `autokonsumpcja ${fmt(100*suma(z12,'au')/suma(z12,'prod'),0)}% produkcji`],
+    ['Produkcja łącznie', fmt(suma(M,'prod')/1000,1),'MWh', `od ${MIES[M[0].m-1]} ${M[0].y}; moc teraz ${fmt(ost.kwp,1)} kWp`],
+  ];
+  $('pvKafle').innerHTML=kafle.map(([l,w,j,d])=>`<div class="tile"><div class="lab">${l}</div><div class="val">${w}<small>${j}</small></div><div class="det">${d}</div></div>`).join('');
+  // lata
+  const L=lata.map(y=>{ const rr=M.filter(r=>r.y===y), zs=rr.filter(r=>ok(r.sun)&&ok(r.spec)); return {y,n:rr.length,prod:suma(rr,'prod'),spec:suma(rr,'spec'),sun:suma(zs,'sun'),specS:suma(zs,'spec'),nS:zs.length,kwp:[...new Set(rr.map(r=>r.kwp))].join('→')}; });
+  const xi=L.map((_,i)=>i);
+  wykres($('pvRok'),{x:[-.6,L.length-.4],height:240,xTicks:()=>xi.map(i=>[i,String(L[i].y)+(L[i].n<12?'*':'')]),include:[0],tol:.5,tipTitle:i=>String(L[i].y),yFmt:(v,d)=>fmt(v/1000,1)+' MWh',ml:60,series:[{type:'bar',x:xi,y:L.map(l=>l.prod),bw:1,frac:.65,maxW:60,color:(v,i)=>L[i].n<12?'#8a6a1c':ORANGE,name:'Produkcja',fmt:(v,i)=>`${fmt(v,0)} kWh (${L[i].n} mies., ${L[i].kwp} kWp)`}]});
+  $('pvTabLata').innerHTML=`<table><thead><tr><th>Rok</th><th>Moc kWp</th><th>Produkcja kWh</th><th>kWh/kWp</th><th>Słońce IMGW h</th><th>kWh/kWp na 100 h słońca</th></tr></thead><tbody>`+[...L].reverse().map(l=>`<tr><td><b>${l.y}</b>${l.n<12?` <span style="color:var(--muted)">(${l.n} mies.)</span>`:''}</td><td>${l.kwp.replace('.',',')}</td><td>${fmt(l.prod,0)}</td><td><b>${fmt(l.spec,0)}</b></td><td>${l.nS?fmt(l.sun,0)+(l.nS<l.n?` (${l.nS} mies.)`:''):'—'}</td><td><b>${l.sun?fmt(100*l.specS/l.sun,1):'—'}</b></td></tr>`).join('')+'</tbody></table>';
+  // miesiące
+  segment($('pvMiesTryb'),[['kwh','kWh'],['spec','na 1 kWp']],sp.tryb,v=>{sp.tryb=v; fotowoltaika();});
+  const pole=sp.tryb==='kwh'?'prod':'spec', jedn=sp.tryb==='kwh'?'kWh':'kWh/kWp';
+  legenda($('legPvMies'),lata.map(y=>[String(y),kolPV(y)]));
+  wykres($('pvMies'),{x:[-.3,11.3],height:260,xTicks:osMies12,tol:.5,include:[0],tipTitle:i=>MIES_PELNE[i],yFmt:(v,d)=>fmt(v,0),series:lata.map(y=>{ const a=Array(12).fill(null); M.filter(r=>r.y===y).forEach(r=>a[r.m-1]=r[pole]); return {type:'line',x:[...Array(12).keys()],y:a,color:kolPV(y),name:String(y),width:y===ost.y?2.6:1.6,endDot:y===ost.y,fmt:v=>fmt(v,sp.tryb==='kwh'?0:1)+' '+jedn}; })});
+  // narastająco
+  legenda($('legPvNar'),lata.map(y=>[String(y),kolPV(y)]));
+  wykres($('pvNar'),{x:[0,12],height:260,xTicks:()=>[0,2,4,6,8,10].map(i=>[i+.5,MIES[i]]),tol:.5,include:[0],tipTitle:i=>'do końca: '+MIES_PELNE[Math.max(0,Math.round(i)-1)],yFmt:(v,d)=>fmt(v/1000,1)+' MWh',ml:60,series:lata.map(y=>{ const x=[0],v=[0]; let c=0; M.filter(r=>r.y===y).forEach(r=>{ c+=r.prod||0; x.push(r.m); v.push(+c.toFixed(1)); }); return {type:'line',x,y:v,color:kolPV(y),name:String(y),width:2,endDot:true,fmt:q=>fmt(q,0)+' kWh'}; })});
+  // scatter
+  const sc=lata.map(y=>{ const rr=M.filter(r=>r.y===y&&ok(r.sun)&&ok(r.spec)).sort((a,b)=>a.sun-b.sun); return {type:'dots',x:rr.map(r=>r.sun),y:rr.map(r=>r.spec),r:3.2,color:kolPV(y),name:String(y),fmt:(v,i)=>`${MIES[rr[i].m-1]}: ${fmt(v,1)} kWh/kWp przy ${fmt(rr[i].sun,0)} h`}; }).filter(s=>s.x.length);
+  legenda($('legPvSc'),sc.map(s=>[s.name,s.color]));
+  const mxS=Math.max(50,...sc.flatMap(s=>s.x));
+  wykres($('pvScat'),{x:[0,mxS*1.04],height:260,xTicks:(a,b)=>{ const t=[]; for(let v=0; v<=b; v+=50) t.push([v,v+' h']); return t; },tol:8,include:[0],tipTitle:t=>`ok. ${fmt(t,0)} h słońca (IMGW)`,yFmt:(v,d)=>fmt(v,0),series:sc});
+  // bilans
+  const B=M.filter(r=>ok(r.zuz)&&r.zuz>0);
+  if(B.length){
+    const x=B.map(r=>r.t), au=B.map(r=>r.au), top=B.map(r=>(r.au||0)+(r.pob||0)), od=B.map(r=>ok(r.odd)?-r.odd:null);
+    legenda($('legPvBil'),[['Zużyta od razu z paneli',ORANGE],['Pobrana z sieci','#8a8a8a'],['Oddana do sieci',BLUE]]);
+    wykres($('pvBil'),{x:[x[0]-20*86400,x[x.length-1]+20*86400],height:300,zero:true,tol:15*86400,ml:54,tipTitle:t=>{ const d=new Date(t*1000); return MIES_PELNE[d.getUTCMonth()]+' '+d.getUTCFullYear(); },yFmt:(v,d)=>fmt(v,0),
+      vlines:ZD.map(z=>({t:dzienTs(z.d),lab:ok(z.kw)?fmt(z.kw,1)+' kW':(/pomp/i.test(z.tekst)?'pompa ciepła':z.tekst.slice(0,18))})),
+      series:[{type:'bar',x,y:top,base:au,bw:28*86400,frac:.85,color:'#8a8a8a',name:'Pobrana z sieci',fmt:(v,i)=>fmt(B[i].pob,0)+' kWh'},
+              {type:'bar',x,y:au,bw:28*86400,frac:.85,color:ORANGE,name:'Zużyta od razu',fmt:(v,i)=>fmt(v,0)+` kWh (zużycie razem ${fmt(B[i].zuz,0)})`},
+              {type:'bar',x,y:od,bw:28*86400,frac:.85,color:BLUE,name:'Oddana',fmt:v=>fmt(-v,0)+' kWh'}]});
+  }
+  // okresy rozliczeniowe – tabela
+  const kol=v=>`color:${v>=0?'#6fbf73':'#e07a5f'}`;
+  const wier=[...OK].reverse().map(o=>`<tr><td><b>XII ${o.Y-1} – XI ${o.Y}</b>${o.n===12?'':` <span style="color:var(--muted)">(${o.n} mies.${o.Y>ost.y||(o.Y===ost.y&&ost.m<11)?', w toku':''})</span>`}</td><td>${fmt(o.pr,0)}</td><td>${fmt(o.zu,0)}</td><td>${fmt(o.a,0)}</td><td>${fmt(o.pb,0)}</td><td>${fmt(o.od,0)}</td><td>${fmt(0.8*o.od,0)}</td><td><b style="${kol(o.sal)}">${fmtZ(o.sal,0)}</b></td><td>${ok(o.nar)?`<b style="${kol(o.nar)}">${fmtZ(o.nar,0)}</b>`:'—'}</td><td>${fmt(100*o.a/o.zu,0)}%</td><td>${fmt(100*o.a/o.pr,0)}%</td></tr>`).join('');
+  $('pvTab').innerHTML=`<table><thead><tr><th>Okres</th><th>Produkcja</th><th>Zużycie</th><th>Zużyta od razu</th><th>Pobrana</th><th>Oddana</th><th>Oddana × 0,8</th><th>Saldo okresu</th><th>Saldo z przeniesieniem</th><th>Pokrycie zużycia</th><th>Autokonsumpcja</th></tr></thead><tbody>${wier}</tbody></table>`;
+  // sprawność wobec promieniowania stacji
+  const H={}; daily.d.forEach((d,i)=>{ const e=daily.energy?.[i]; if(!ok(e)) return; const k=d.slice(0,7); (H[k]=H[k]||{s:0,n:0}); H[k].s+=e; H[k].n++; });
+  const PR=M.filter(r=>H[r.k]&&H[r.k].n>=25&&ok(r.spec)).map(r=>({...r,H:H[r.k].s*new Date(Date.UTC(r.y,r.m,0)).getUTCDate()/H[r.k].n}));
+  if(PR.length<2){ $('pvPRkarta').style.display='none'; }
+  else { const xp=PR.map((_,i)=>i);
+    wykres($('pvPR'),{x:[-.6,PR.length-.4],height:220,xTicks:()=>xp.map(i=>[i,MIES[PR[i].m-1]+(PR[i].m===1||i===0?' '+String(PR[i].y).slice(2):'')]),include:[0],tol:.5,tipTitle:i=>MIES_PELNE[PR[i].m-1]+' '+PR[i].y,yFmt:(v,d)=>fmt(v,d),
+      series:[{type:'bar',x:xp,y:PR.map(r=>r.spec/r.H),bw:1,frac:.65,maxW:40,color:ORANGE,name:'Wskaźnik',fmt:(v,i)=>`${fmt(v,2)} (${fmt(PR[i].spec,1)} kWh/kWp ÷ ${fmt(PR[i].H,1)} kWh/m²)`}]}); }
+}
+
 // ── WYKRESY WIELOLETNIE
 const kolRoku = y => KOL_LAT[(lataArch.length-1-lataArch.indexOf(y))%KOL_LAT.length];
 const osMies12 = (a,b)=>[0,2,4,6,8,10].map(i=>[i,MIES[i]]);
@@ -616,7 +712,7 @@ function rekordy(){
   $('rekordy').innerHTML=`<table><thead><tr><th>Rekord</th><th>Wartość</th><th>Jedn.</th><th>Data</th></tr></thead><tbody>${w}</tbody></table>`;
 }
 
-function wszystko(){ rysujPrzebieg(); rysujNormy(); tabelaLat(); tabelaImgw(); opadReczny(); wykresMT(); wykresOR(); wykresW(); kalendarz(); roza(); rekordy(); }
+function wszystko(){ rysujPrzebieg(); rysujNormy(); tabelaLat(); tabelaImgw(); opadReczny(); fotowoltaika(); wykresMT(); wykresOR(); wykresW(); kalendarz(); roza(); rekordy(); }
 ustawPreset('48h');
 wszystko();
 $('stopka').textContent = `Archiwum od ${daily.d.length?dStrPl(daily.d[0],true):'—'} · wygenerowano ${krotko(D.meta.wygenerowano)} · dane: Ecowitt Cloud, IMGW-PIB (danepubliczne.imgw.pl)`;
