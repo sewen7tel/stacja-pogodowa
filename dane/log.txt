@@ -1,0 +1,636 @@
+[2026-11-09 08:41:40] Ecowitt: dane 5-min od 2026-08-12 08:41 UTC
+[2026-11-09 08:41:41]    5min 2026-08-12 10:41 → 2026-08-13 10:41: 0 pomiarów (co 5 min)
+[2026-11-09 08:41:44]    5min 2026-08-13 10:41 → 2026-08-14 10:41: 0 pomiarów (co 5 min)
+[2026-11-09 08:41:46]    5min 2026-08-14 10:41 → 2026-08-15 10:41: 0 pomiarów (co 5 min)
+[2026-11-09 08:41:49]    5min 2026-08-15 10:41 → 2026-08-16 10:41: 0 pomiarów (co 5 min)
+[2026-11-09 08:41:52]    5min 2026-08-16 10:41 → 2026-08-17 10:41: 0 pomiarów (co 5 min)
+[2026-11-09 08:41:55]    5min 2026-08-17 10:41 → 2026-08-18 10:41: 0 pomiarów (co 5 min)
+[2026-11-09 08:41:57]    5min 2026-08-18 10:41 → 2026-08-19 10:41: 0 pomiarów (co 5 min)
+[2026-11-09 08:42:00]    5min 2026-08-19 10:41 → 2026-08-20 10:41: 280 pomiarów (co 5 min)
+[2026-11-09 08:42:03]    5min 2026-08-20 10:41 → 2026-08-21 10:41: 278 pomiarów (co 5 min)
+[2026-11-09 08:42:06]    5min 2026-08-21 10:41 → 2026-08-22 10:41: 166 pomiarów (co 5 min)
+[2026-11-09 08:42:09]    5min 2026-08-22 10:41 → 2026-08-23 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:11]    5min 2026-08-23 10:41 → 2026-08-24 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:14]    5min 2026-08-24 10:41 → 2026-08-25 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:18]    5min 2026-08-25 10:41 → 2026-08-26 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:20]    5min 2026-08-26 10:41 → 2026-08-27 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:24]    5min 2026-08-27 10:41 → 2026-08-28 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:27]    5min 2026-08-28 10:41 → 2026-08-29 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:30]    5min 2026-08-29 10:41 → 2026-08-30 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:34]    5min 2026-08-30 10:41 → 2026-08-31 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:37]    5min 2026-08-31 10:41 → 2026-09-01 10:41: 286 pomiarów (co 5 min)
+[2026-11-09 08:42:40]    5min 2026-09-01 10:41 → 2026-09-02 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:43]    5min 2026-09-02 10:41 → 2026-09-03 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:46]    5min 2026-09-03 10:41 → 2026-09-04 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:49]    5min 2026-09-04 10:41 → 2026-09-05 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:52]    5min 2026-09-05 10:41 → 2026-09-06 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:55]    5min 2026-09-06 10:41 → 2026-09-07 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:42:58]    5min 2026-09-07 10:41 → 2026-09-08 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:01]    5min 2026-09-08 10:41 → 2026-09-09 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:04]    5min 2026-09-09 10:41 → 2026-09-10 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:07]    5min 2026-09-10 10:41 → 2026-09-11 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:10]    5min 2026-09-11 10:41 → 2026-09-12 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:13]    5min 2026-09-12 10:41 → 2026-09-13 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:16]    5min 2026-09-13 10:41 → 2026-09-14 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:19]    5min 2026-09-14 10:41 → 2026-09-15 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:22]    5min 2026-09-15 10:41 → 2026-09-16 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:25]    5min 2026-09-16 10:41 → 2026-09-17 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:28]    5min 2026-09-17 10:41 → 2026-09-18 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:30]    5min 2026-09-18 10:41 → 2026-09-19 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:33]    5min 2026-09-19 10:41 → 2026-09-20 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:36]    5min 2026-09-20 10:41 → 2026-09-21 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:39]    5min 2026-09-21 10:41 → 2026-09-22 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:42]    5min 2026-09-22 10:41 → 2026-09-23 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:45]    5min 2026-09-23 10:41 → 2026-09-24 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:47]    5min 2026-09-24 10:41 → 2026-09-25 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:50]    5min 2026-09-25 10:41 → 2026-09-26 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:53]    5min 2026-09-26 10:41 → 2026-09-27 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:43:57]    5min 2026-09-27 10:41 → 2026-09-28 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:00]    5min 2026-09-28 10:41 → 2026-09-29 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:02]    5min 2026-09-29 10:41 → 2026-09-30 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:05]    5min 2026-09-30 10:41 → 2026-10-01 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:08]    5min 2026-10-01 10:41 → 2026-10-02 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:11]    5min 2026-10-02 10:41 → 2026-10-03 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:14]    5min 2026-10-03 10:41 → 2026-10-04 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:16]    5min 2026-10-04 10:41 → 2026-10-05 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:19]    5min 2026-10-05 10:41 → 2026-10-06 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:22]    5min 2026-10-06 10:41 → 2026-10-07 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:25]    5min 2026-10-07 10:41 → 2026-10-08 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:28]    5min 2026-10-08 10:41 → 2026-10-09 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:30]    5min 2026-10-09 10:41 → 2026-10-10 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:33]    5min 2026-10-10 10:41 → 2026-10-11 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:36]    5min 2026-10-11 10:41 → 2026-10-12 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:39]    5min 2026-10-12 10:41 → 2026-10-13 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:42]    5min 2026-10-13 10:41 → 2026-10-14 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:45]    5min 2026-10-14 10:41 → 2026-10-15 10:41: 287 pomiarów (co 5 min)
+[2026-11-09 08:44:48]    5min 2026-10-15 10:41 → 2026-10-16 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:50]    5min 2026-10-16 10:41 → 2026-10-17 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:54]    5min 2026-10-17 10:41 → 2026-10-18 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:56]    5min 2026-10-18 10:41 → 2026-10-19 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:44:59]    5min 2026-10-19 10:41 → 2026-10-20 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:02]    5min 2026-10-20 10:41 → 2026-10-21 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:08]    5min 2026-10-21 10:41 → 2026-10-22 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:11]    5min 2026-10-22 10:41 → 2026-10-23 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:13]    5min 2026-10-23 10:41 → 2026-10-24 10:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:16]    5min 2026-10-24 10:41 → 2026-10-25 09:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:20]    5min 2026-10-25 09:41 → 2026-10-26 09:41: 286 pomiarów (co 5 min)
+[2026-11-09 08:45:22]    5min 2026-10-26 09:41 → 2026-10-27 09:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:25]    5min 2026-10-27 09:41 → 2026-10-28 09:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:28]    5min 2026-10-28 09:41 → 2026-10-29 09:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:30]    5min 2026-10-29 09:41 → 2026-10-30 09:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:33]    5min 2026-10-30 09:41 → 2026-10-31 09:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:36]    5min 2026-10-31 09:41 → 2026-11-01 09:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:39]    5min 2026-11-01 09:41 → 2026-11-02 09:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:42]    5min 2026-11-02 09:41 → 2026-11-03 09:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:45]    5min 2026-11-03 09:41 → 2026-11-04 09:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:47]    5min 2026-11-04 09:41 → 2026-11-05 09:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:50]    5min 2026-11-05 09:41 → 2026-11-06 09:41: 287 pomiarów (co 5 min)
+[2026-11-09 08:45:53]    5min 2026-11-06 09:41 → 2026-11-07 09:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:56]    5min 2026-11-07 09:41 → 2026-11-08 09:41: 288 pomiarów (co 5 min)
+[2026-11-09 08:45:58]    5min 2026-11-08 09:41 → 2026-11-09 09:41: 287 pomiarów (co 5 min)
+[2026-11-09 08:46:00] Ecowitt: historia 30-min (ostatni rok)
+[2026-11-09 08:46:01]   30min 2025-11-10 09:41 → 2025-11-17 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:03]   30min 2025-11-17 09:41 → 2025-11-24 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:05]   30min 2025-11-24 09:41 → 2025-12-01 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:08]   30min 2025-12-01 09:41 → 2025-12-08 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:10]   30min 2025-12-08 09:41 → 2025-12-15 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:13]   30min 2025-12-15 09:41 → 2025-12-22 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:15]   30min 2025-12-22 09:41 → 2025-12-29 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:18]   30min 2025-12-29 09:41 → 2026-01-05 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:20]   30min 2026-01-05 09:41 → 2026-01-12 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:23]   30min 2026-01-12 09:41 → 2026-01-19 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:25]   30min 2026-01-19 09:41 → 2026-01-26 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:27]   30min 2026-01-26 09:41 → 2026-02-02 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:30]   30min 2026-02-02 09:41 → 2026-02-09 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:32]   30min 2026-02-09 09:41 → 2026-02-16 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:35]   30min 2026-02-16 09:41 → 2026-02-23 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:37]   30min 2026-02-23 09:41 → 2026-03-02 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:40]   30min 2026-03-02 09:41 → 2026-03-09 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:43]   30min 2026-03-09 09:41 → 2026-03-16 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:45]   30min 2026-03-16 09:41 → 2026-03-23 09:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:47]   30min 2026-03-23 09:41 → 2026-03-30 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:50]   30min 2026-03-30 10:41 → 2026-04-06 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:52]   30min 2026-04-06 10:41 → 2026-04-13 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:55]   30min 2026-04-13 10:41 → 2026-04-20 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:46:57]   30min 2026-04-20 10:41 → 2026-04-27 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:00]   30min 2026-04-27 10:41 → 2026-05-04 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:02]   30min 2026-05-04 10:41 → 2026-05-11 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:04]   30min 2026-05-11 10:41 → 2026-05-18 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:07]   30min 2026-05-18 10:41 → 2026-05-25 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:09]   30min 2026-05-25 10:41 → 2026-06-01 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:11]   30min 2026-06-01 10:41 → 2026-06-08 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:14]   30min 2026-06-08 10:41 → 2026-06-15 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:16]   30min 2026-06-15 10:41 → 2026-06-22 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:18]   30min 2026-06-22 10:41 → 2026-06-29 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:21]   30min 2026-06-29 10:41 → 2026-07-06 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:23]   30min 2026-07-06 10:41 → 2026-07-13 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:25]   30min 2026-07-13 10:41 → 2026-07-20 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:28]   30min 2026-07-20 10:41 → 2026-07-27 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:30]   30min 2026-07-27 10:41 → 2026-08-03 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:33]   30min 2026-08-03 10:41 → 2026-08-10 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:35]   30min 2026-08-10 10:41 → 2026-08-12 10:41: 0 pomiarów (co 30 min)
+[2026-11-09 08:47:37] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 08:47:37] IMGW: pobieram dane dobowe synop dla SZCZECIN
+[2026-11-09 08:48:27] IMGW: 13088 dób (1991-01-01 – 2026-10-31)
+[2026-11-09 08:48:27] Weathercloud: Weathercloud VEVOR 2025-12.csv — 29664 wartości
+[2026-11-09 08:48:27] Weathercloud: Weathercloud VEVOR 2026-01.csv — pominięto 488 wartości z okresów „zamrożonych” odczytów
+[2026-11-09 08:48:27] Weathercloud: Weathercloud VEVOR 2026-01.csv — 29120 wartości
+[2026-11-09 08:48:27] Weathercloud: Weathercloud VEVOR 2026-02.csv — 26816 wartości
+[2026-11-09 08:48:27] Weathercloud: Weathercloud VEVOR 2026-03.csv — 29272 wartości
+[2026-11-09 08:48:28] Weathercloud: Weathercloud VEVOR 2026-04.csv — 28520 wartości
+[2026-11-09 08:48:28] Weathercloud: Weathercloud VEVOR 2026-05.csv — 29616 wartości
+[2026-11-09 08:48:28] Weathercloud: Weathercloud VEVOR 2026-06.csv — 28696 wartości
+[2026-11-09 08:48:28] Weathercloud: Weathercloud VEVOR 2026-07.csv — pominięto 3720 wartości z okresów „zamrożonych” odczytów
+[2026-11-09 08:48:28] Weathercloud: Weathercloud VEVOR 2026-07.csv — 25524 wartości
+[2026-11-09 08:48:28] Weathercloud: Weathercloud VEVOR 2026-08.csv — 17328 wartości
+[2026-11-09 08:48:28] Opad ręczny: ilość opadów.xlsx — 50 miesięcy
+[2026-11-09 08:48:32] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-09 10:04:41] Ecowitt: dane 5-min od 2026-11-09 08:05 UTC
+[2026-11-09 10:04:42]    5min 2026-11-09 09:05 → 2026-11-09 11:04: 23 pomiarów (co 5 min)
+[2026-11-09 10:04:44] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 10:04:50] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-09 11:02:21] Ecowitt: dane 5-min od 2026-11-09 09:25 UTC
+[2026-11-09 11:02:21]    5min 2026-11-09 10:25 → 2026-11-09 12:02: 18 pomiarów (co 5 min)
+[2026-11-09 11:02:23] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 11:02:28] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-09 12:00:04] Ecowitt: dane 5-min od 2026-11-09 10:20 UTC
+[2026-11-09 12:00:07]    5min 2026-11-09 11:20 → 2026-11-09 13:00: 19 pomiarów (co 5 min)
+[2026-11-09 12:00:09] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 12:00:14] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-09 13:17:44] Ecowitt: dane 5-min od 2026-11-09 11:20 UTC
+[2026-11-09 13:17:44]    5min 2026-11-09 12:20 → 2026-11-09 14:17: 22 pomiarów (co 5 min)
+[2026-11-09 13:17:46] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 13:17:50] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-09 14:59:56] Ecowitt: dane 5-min od 2026-11-09 12:35 UTC
+[2026-11-09 14:59:57]    5min 2026-11-09 13:35 → 2026-11-09 15:59: 28 pomiarów (co 5 min)
+[2026-11-09 14:59:59] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 15:00:03] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-09 16:07:20] Ecowitt: dane 5-min od 2026-11-09 14:20 UTC
+[2026-11-09 16:07:21]    5min 2026-11-09 15:20 → 2026-11-09 17:07: 20 pomiarów (co 5 min)
+[2026-11-09 16:07:23] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 16:07:27] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-09 17:14:40] Ecowitt: dane 5-min od 2026-11-09 15:25 UTC
+[2026-11-09 17:14:41]    5min 2026-11-09 16:25 → 2026-11-09 18:14: 21 pomiarów (co 5 min)
+[2026-11-09 17:14:43] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 17:14:49] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-09 18:00:07] Ecowitt: dane 5-min od 2026-11-09 16:35 UTC
+[2026-11-09 18:00:09]    5min 2026-11-09 17:35 → 2026-11-09 19:00: 16 pomiarów (co 5 min)
+[2026-11-09 18:00:11] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 18:00:15] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-09 18:58:47] Ecowitt: dane 5-min od 2026-11-09 17:20 UTC
+[2026-11-09 18:58:48]    5min 2026-11-09 18:20 → 2026-11-09 19:58: 19 pomiarów (co 5 min)
+[2026-11-09 18:58:50] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 18:58:54] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-09 19:59:21] Ecowitt: dane 5-min od 2026-11-09 18:20 UTC
+[2026-11-09 19:59:22]    5min 2026-11-09 19:20 → 2026-11-09 20:59: 19 pomiarów (co 5 min)
+[2026-11-09 19:59:24] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 19:59:30] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-09 20:57:13] Ecowitt: dane 5-min od 2026-11-09 19:20 UTC
+[2026-11-09 20:57:14]    5min 2026-11-09 20:20 → 2026-11-09 21:57: 18 pomiarów (co 5 min)
+[2026-11-09 20:57:16] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 20:57:22] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-09 21:53:02] Ecowitt: dane 5-min od 2026-11-09 20:15 UTC
+[2026-11-09 21:53:03]    5min 2026-11-09 21:15 → 2026-11-09 22:53: 18 pomiarów (co 5 min)
+[2026-11-09 21:53:05] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 21:53:11] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-09 22:52:17] Ecowitt: dane 5-min od 2026-11-09 21:10 UTC
+[2026-11-09 22:52:18]    5min 2026-11-09 22:10 → 2026-11-09 23:52: 19 pomiarów (co 5 min)
+[2026-11-09 22:52:20] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 22:52:25] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-09 23:45:22] Ecowitt: dane 5-min od 2026-11-09 22:10 UTC
+[2026-11-09 23:45:23]    5min 2026-11-09 23:10 → 2026-11-10 00:45: 18 pomiarów (co 5 min)
+[2026-11-09 23:45:25] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-09 23:45:29] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 01:05:52] Ecowitt: dane 5-min od 2026-11-09 23:05 UTC
+[2026-11-10 01:05:52]    5min 2026-11-10 00:05 → 2026-11-10 02:05: 23 pomiarów (co 5 min)
+[2026-11-10 01:05:54] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 01:05:58] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 02:09:22] Ecowitt: dane 5-min od 2026-11-10 00:25 UTC
+[2026-11-10 02:09:23]    5min 2026-11-10 01:25 → 2026-11-10 03:09: 20 pomiarów (co 5 min)
+[2026-11-10 02:09:25] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 02:09:29] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 02:55:41] Ecowitt: dane 5-min od 2026-11-10 01:30 UTC
+[2026-11-10 02:55:42]    5min 2026-11-10 02:30 → 2026-11-10 03:55: 16 pomiarów (co 5 min)
+[2026-11-10 02:55:44] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 02:55:48] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 03:55:25] Ecowitt: dane 5-min od 2026-11-10 02:15 UTC
+[2026-11-10 03:55:26]    5min 2026-11-10 03:15 → 2026-11-10 04:55: 19 pomiarów (co 5 min)
+[2026-11-10 03:55:28] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 03:55:31] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 04:57:55] Ecowitt: dane 5-min od 2026-11-10 03:15 UTC
+[2026-11-10 04:57:55]    5min 2026-11-10 04:15 → 2026-11-10 05:57: 19 pomiarów (co 5 min)
+[2026-11-10 04:57:57] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 04:57:57] IMGW: pobieram dane dobowe synop dla SZCZECIN
+[2026-11-10 04:58:11] IMGW: 13088 dób (1991-01-01 – 2026-10-31)
+[2026-11-10 04:58:15] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 05:58:00] Ecowitt: dane 5-min od 2026-11-10 04:15 UTC
+[2026-11-10 05:58:01]    5min 2026-11-10 05:15 → 2026-11-10 06:57: 19 pomiarów (co 5 min)
+[2026-11-10 05:58:03] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 05:58:08] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 07:13:03] Ecowitt: dane 5-min od 2026-11-10 05:15 UTC
+[2026-11-10 07:13:04]    5min 2026-11-10 06:15 → 2026-11-10 08:13: 22 pomiarów (co 5 min)
+[2026-11-10 07:13:06] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 07:13:12] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 08:22:11] Ecowitt: dane 5-min od 2026-11-10 06:30 UTC
+[2026-11-10 08:22:12]    5min 2026-11-10 07:30 → 2026-11-10 09:22: 21 pomiarów (co 5 min)
+[2026-11-10 08:22:14] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 08:22:19] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 09:58:41] Ecowitt: dane 5-min od 2026-11-10 07:40 UTC
+[2026-11-10 09:58:42]    5min 2026-11-10 08:40 → 2026-11-10 10:58: 27 pomiarów (co 5 min)
+[2026-11-10 09:58:44] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 09:58:47] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 10:57:19] Ecowitt: dane 5-min od 2026-11-10 09:20 UTC
+[2026-11-10 10:57:20]    5min 2026-11-10 10:20 → 2026-11-10 11:57: 18 pomiarów (co 5 min)
+[2026-11-10 10:57:22] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 10:57:29] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 11:54:48] Ecowitt: dane 5-min od 2026-11-10 10:15 UTC
+[2026-11-10 11:54:49]    5min 2026-11-10 11:15 → 2026-11-10 12:54: 19 pomiarów (co 5 min)
+[2026-11-10 11:54:51] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 11:54:55] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 13:06:11] Ecowitt: dane 5-min od 2026-11-10 11:15 UTC
+[2026-11-10 13:06:12]    5min 2026-11-10 12:15 → 2026-11-10 14:06: 21 pomiarów (co 5 min)
+[2026-11-10 13:06:14] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 13:06:17] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 14:18:52] Ecowitt: dane 5-min od 2026-11-10 12:25 UTC
+[2026-11-10 14:18:53]    5min 2026-11-10 13:25 → 2026-11-10 15:18: 22 pomiarów (co 5 min)
+[2026-11-10 14:18:55] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 14:19:01] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 15:55:04] Ecowitt: dane 5-min od 2026-11-10 13:40 UTC
+[2026-11-10 15:55:05]    5min 2026-11-10 14:40 → 2026-11-10 16:55: 26 pomiarów (co 5 min)
+[2026-11-10 15:55:07] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 15:55:13] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 16:57:22] Ecowitt: dane 5-min od 2026-11-10 15:15 UTC
+[2026-11-10 16:57:22]    5min 2026-11-10 16:15 → 2026-11-10 17:57: 19 pomiarów (co 5 min)
+[2026-11-10 16:57:24] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 16:57:28] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 17:52:26] Ecowitt: dane 5-min od 2026-11-10 16:15 UTC
+[2026-11-10 17:52:26]    5min 2026-11-10 17:15 → 2026-11-10 18:52: 18 pomiarów (co 5 min)
+[2026-11-10 17:52:28] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 17:52:32] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 18:57:32] Ecowitt: dane 5-min od 2026-11-10 17:10 UTC
+[2026-11-10 18:57:33]    5min 2026-11-10 18:10 → 2026-11-10 19:57: 20 pomiarów (co 5 min)
+[2026-11-10 18:57:35] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 18:57:39] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 19:58:02] Ecowitt: dane 5-min od 2026-11-10 18:15 UTC
+[2026-11-10 19:58:02]    5min 2026-11-10 19:15 → 2026-11-10 20:58: 19 pomiarów (co 5 min)
+[2026-11-10 19:58:04] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 19:58:08] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 20:51:06] Ecowitt: dane 5-min od 2026-11-10 19:15 UTC
+[2026-11-10 20:51:07]    5min 2026-11-10 20:15 → 2026-11-10 21:51: 18 pomiarów (co 5 min)
+[2026-11-10 20:51:09] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 20:51:13] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 21:47:28] Ecowitt: dane 5-min od 2026-11-10 20:10 UTC
+[2026-11-10 21:47:28]    5min 2026-11-10 21:10 → 2026-11-10 22:47: 18 pomiarów (co 5 min)
+[2026-11-10 21:47:30] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 21:47:37] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 22:48:43] Ecowitt: dane 5-min od 2026-11-10 21:05 UTC
+[2026-11-10 22:48:44]    5min 2026-11-10 22:05 → 2026-11-10 23:48: 20 pomiarów (co 5 min)
+[2026-11-10 22:48:46] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 22:48:53] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-10 23:42:30] Ecowitt: dane 5-min od 2026-11-10 22:10 UTC
+[2026-11-10 23:42:31]    5min 2026-11-10 23:10 → 2026-11-11 00:42: 17 pomiarów (co 5 min)
+[2026-11-10 23:42:33] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-10 23:42:36] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 01:08:38] Ecowitt: dane 5-min od 2026-11-10 23:00 UTC
+[2026-11-11 01:08:39]    5min 2026-11-11 00:00 → 2026-11-11 02:08: 25 pomiarów (co 5 min)
+[2026-11-11 01:08:41] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 01:08:41] IMGW: pobieram dane dobowe synop dla SZCZECIN
+[2026-11-11 01:09:02] IMGW: 13088 dób (1991-01-01 – 2026-10-31)
+[2026-11-11 01:09:08] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 02:07:26] Ecowitt: dane 5-min od 2026-11-11 00:30 UTC
+[2026-11-11 02:07:27]    5min 2026-11-11 01:30 → 2026-11-11 03:07: 18 pomiarów (co 5 min)
+[2026-11-11 02:07:29] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 02:07:35] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 02:55:54] Ecowitt: dane 5-min od 2026-11-11 01:25 UTC
+[2026-11-11 02:55:55]    5min 2026-11-11 02:25 → 2026-11-11 03:55: 17 pomiarów (co 5 min)
+[2026-11-11 02:55:57] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 02:56:04] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 03:59:18] Ecowitt: dane 5-min od 2026-11-11 02:15 UTC
+[2026-11-11 03:59:19]    5min 2026-11-11 03:15 → 2026-11-11 04:59: 20 pomiarów (co 5 min)
+[2026-11-11 03:59:21] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 03:59:27] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 05:04:29] Ecowitt: dane 5-min od 2026-11-11 03:20 UTC
+[2026-11-11 05:04:29]    5min 2026-11-11 04:20 → 2026-11-11 06:04: 20 pomiarów (co 5 min)
+[2026-11-11 05:04:31] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 05:04:36] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 06:04:33] Ecowitt: dane 5-min od 2026-11-11 04:25 UTC
+[2026-11-11 06:04:34]    5min 2026-11-11 05:25 → 2026-11-11 07:04: 19 pomiarów (co 5 min)
+[2026-11-11 06:04:36] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 06:04:42] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 07:19:00] Ecowitt: dane 5-min od 2026-11-11 05:25 UTC
+[2026-11-11 07:19:01]    5min 2026-11-11 06:25 → 2026-11-11 08:18: 22 pomiarów (co 5 min)
+[2026-11-11 07:19:03] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 07:19:07] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 09:00:16] Ecowitt: dane 5-min od 2026-11-11 06:40 UTC
+[2026-11-11 09:00:16]    5min 2026-11-11 07:40 → 2026-11-11 10:00: 27 pomiarów (co 5 min)
+[2026-11-11 09:00:18] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 09:00:23] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 10:03:42] Ecowitt: dane 5-min od 2026-11-11 08:20 UTC
+[2026-11-11 10:03:43]    5min 2026-11-11 09:20 → 2026-11-11 11:03: 20 pomiarów (co 5 min)
+[2026-11-11 10:03:45] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 10:03:48] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 10:16:05] Ecowitt: dane 5-min od 2026-11-11 09:25 UTC
+[2026-11-11 10:16:05]    5min 2026-11-11 10:25 → 2026-11-11 11:16: 9 pomiarów (co 5 min)
+[2026-11-11 10:16:07] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 10:16:07] Fotowoltaika: instalacja_fotowoltaiczna.xlsx — 94 miesięcy, zdarzenia: 2018-11-09 panale fotowoltaiczne moc 5,6 kW; 2024-09-19 montaż pompy ciepła; 2024-11-08 podłączenie nowych paneli do 9,8 kW
+[2026-11-11 10:16:13] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 11:04:40] Ecowitt: dane 5-min od 2026-11-11 09:35 UTC
+[2026-11-11 11:04:41]    5min 2026-11-11 10:35 → 2026-11-11 12:04: 17 pomiarów (co 5 min)
+[2026-11-11 11:04:43] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 11:04:47] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 11:59:42] Ecowitt: dane 5-min od 2026-11-11 10:25 UTC
+[2026-11-11 11:59:42]    5min 2026-11-11 11:25 → 2026-11-11 12:59: 18 pomiarów (co 5 min)
+[2026-11-11 11:59:44] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 11:59:49] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 13:13:48] Ecowitt: dane 5-min od 2026-11-11 11:20 UTC
+[2026-11-11 13:13:49]    5min 2026-11-11 12:20 → 2026-11-11 14:13: 22 pomiarów (co 5 min)
+[2026-11-11 13:13:51] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 13:13:57] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 14:24:44] Ecowitt: dane 5-min od 2026-11-11 12:35 UTC
+[2026-11-11 14:24:45]    5min 2026-11-11 13:35 → 2026-11-11 15:24: 21 pomiarów (co 5 min)
+[2026-11-11 14:24:47] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 14:24:51] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 15:56:42] Ecowitt: dane 5-min od 2026-11-11 13:45 UTC
+[2026-11-11 15:56:42]    5min 2026-11-11 14:45 → 2026-11-11 16:56: 25 pomiarów (co 5 min)
+[2026-11-11 15:56:44] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 15:56:51] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 17:00:25] Ecowitt: dane 5-min od 2026-11-11 15:15 UTC
+[2026-11-11 17:00:26]    5min 2026-11-11 16:15 → 2026-11-11 18:00: 20 pomiarów (co 5 min)
+[2026-11-11 17:00:28] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 17:00:32] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 17:59:10] Ecowitt: dane 5-min od 2026-11-11 16:20 UTC
+[2026-11-11 17:59:11]    5min 2026-11-11 17:20 → 2026-11-11 18:59: 19 pomiarów (co 5 min)
+[2026-11-11 17:59:13] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 17:59:17] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 19:00:39] Ecowitt: dane 5-min od 2026-11-11 17:20 UTC
+[2026-11-11 19:00:39]    5min 2026-11-11 18:20 → 2026-11-11 20:00: 19 pomiarów (co 5 min)
+[2026-11-11 19:00:41] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 19:00:45] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 20:04:36] Ecowitt: dane 5-min od 2026-11-11 18:20 UTC
+[2026-11-11 20:04:37]    5min 2026-11-11 19:20 → 2026-11-11 21:04: 20 pomiarów (co 5 min)
+[2026-11-11 20:04:39] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 20:04:46] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 21:40:50] Ecowitt: dane 5-min od 2026-11-11 19:25 UTC
+[2026-11-11 21:40:50]    5min 2026-11-11 20:25 → 2026-11-11 22:40: 26 pomiarów (co 5 min)
+[2026-11-11 21:40:52] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 21:40:52] IMGW: pobieram dane dobowe synop dla SZCZECIN
+[2026-11-11 21:41:11] IMGW: 13088 dób (1991-01-01 – 2026-10-31)
+[2026-11-11 21:41:17] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 22:57:19] Ecowitt: dane 5-min od 2026-11-11 21:00 UTC
+[2026-11-11 22:57:19]    5min 2026-11-11 22:00 → 2026-11-11 23:57: 22 pomiarów (co 5 min)
+[2026-11-11 22:57:21] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 22:57:28] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-11 23:53:16] Ecowitt: dane 5-min od 2026-11-11 22:15 UTC
+[2026-11-11 23:53:16]    5min 2026-11-11 23:15 → 2026-11-12 00:53: 18 pomiarów (co 5 min)
+[2026-11-11 23:53:18] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-11 23:53:22] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 01:17:07] Ecowitt: dane 5-min od 2026-11-11 23:10 UTC
+[2026-11-12 01:17:07]    5min 2026-11-12 00:10 → 2026-11-12 02:17: 24 pomiarów (co 5 min)
+[2026-11-12 01:17:09] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 01:17:16] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 02:20:26] Ecowitt: dane 5-min od 2026-11-12 00:35 UTC
+[2026-11-12 02:20:26]    5min 2026-11-12 01:35 → 2026-11-12 03:20: 20 pomiarów (co 5 min)
+[2026-11-12 02:20:28] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 02:20:32] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 03:58:49] Ecowitt: dane 5-min od 2026-11-12 01:40 UTC
+[2026-11-12 03:58:50]    5min 2026-11-12 02:40 → 2026-11-12 04:58: 27 pomiarów (co 5 min)
+[2026-11-12 03:58:52] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 03:58:58] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 05:05:31] Ecowitt: dane 5-min od 2026-11-12 03:20 UTC
+[2026-11-12 05:05:32]    5min 2026-11-12 04:20 → 2026-11-12 06:05: 20 pomiarów (co 5 min)
+[2026-11-12 05:05:34] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 05:05:37] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 06:08:39] Ecowitt: dane 5-min od 2026-11-12 04:25 UTC
+[2026-11-12 06:08:40]    5min 2026-11-12 05:25 → 2026-11-12 07:08: 20 pomiarów (co 5 min)
+[2026-11-12 06:08:42] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 06:08:49] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 07:24:36] Ecowitt: dane 5-min od 2026-11-12 05:30 UTC
+[2026-11-12 07:24:36]    5min 2026-11-12 06:30 → 2026-11-12 08:24: 22 pomiarów (co 5 min)
+[2026-11-12 07:24:38] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 07:24:42] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 09:06:23] Ecowitt: dane 5-min od 2026-11-12 06:45 UTC
+[2026-11-12 09:06:23]    5min 2026-11-12 07:45 → 2026-11-12 10:06: 27 pomiarów (co 5 min)
+[2026-11-12 09:06:25] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 09:06:32] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 10:08:13] Ecowitt: dane 5-min od 2026-11-12 08:25 UTC
+[2026-11-12 10:08:14]    5min 2026-11-12 09:25 → 2026-11-12 11:08: 19 pomiarów (co 5 min)
+[2026-11-12 10:08:16] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 10:08:23] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 11:09:58] Ecowitt: dane 5-min od 2026-11-12 09:25 UTC
+[2026-11-12 11:09:59]    5min 2026-11-12 10:25 → 2026-11-12 12:09: 20 pomiarów (co 5 min)
+[2026-11-12 11:10:01] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 11:10:06] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 12:03:05] Ecowitt: dane 5-min od 2026-11-12 10:30 UTC
+[2026-11-12 12:03:06]    5min 2026-11-12 11:30 → 2026-11-12 13:03: 17 pomiarów (co 5 min)
+[2026-11-12 12:03:08] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 12:03:13] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 13:18:17] Ecowitt: dane 5-min od 2026-11-12 11:20 UTC
+[2026-11-12 13:18:17]    5min 2026-11-12 12:20 → 2026-11-12 14:18: 22 pomiarów (co 5 min)
+[2026-11-12 13:18:19] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 13:18:26] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 14:59:56] Ecowitt: dane 5-min od 2026-11-12 12:35 UTC
+[2026-11-12 14:59:57]    5min 2026-11-12 13:35 → 2026-11-12 15:59: 28 pomiarów (co 5 min)
+[2026-11-12 14:59:59] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 15:00:04] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 16:09:15] Ecowitt: dane 5-min od 2026-11-12 14:20 UTC
+[2026-11-12 16:09:16]    5min 2026-11-12 15:20 → 2026-11-12 17:09: 21 pomiarów (co 5 min)
+[2026-11-12 16:09:18] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 16:09:23] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 17:08:20] Ecowitt: dane 5-min od 2026-11-12 15:30 UTC
+[2026-11-12 17:08:21]    5min 2026-11-12 16:30 → 2026-11-12 18:08: 18 pomiarów (co 5 min)
+[2026-11-12 17:08:23] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 17:08:27] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 17:57:50] Ecowitt: dane 5-min od 2026-11-12 16:25 UTC
+[2026-11-12 17:57:50]    5min 2026-11-12 17:25 → 2026-11-12 18:57: 17 pomiarów (co 5 min)
+[2026-11-12 17:57:52] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 17:57:52] IMGW: pobieram dane dobowe synop dla SZCZECIN
+[2026-11-12 17:58:16] IMGW: 13088 dób (1991-01-01 – 2026-10-31)
+[2026-11-12 17:58:22] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 18:59:56] Ecowitt: dane 5-min od 2026-11-12 17:15 UTC
+[2026-11-12 18:59:56]    5min 2026-11-12 18:15 → 2026-11-12 19:59: 20 pomiarów (co 5 min)
+[2026-11-12 18:59:58] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 19:00:02] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 19:59:09] Ecowitt: dane 5-min od 2026-11-12 18:20 UTC
+[2026-11-12 19:59:10]    5min 2026-11-12 19:20 → 2026-11-12 20:59: 19 pomiarów (co 5 min)
+[2026-11-12 19:59:12] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 19:59:17] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 20:55:09] Ecowitt: dane 5-min od 2026-11-12 19:20 UTC
+[2026-11-12 20:55:10]    5min 2026-11-12 20:20 → 2026-11-12 21:55: 18 pomiarów (co 5 min)
+[2026-11-12 20:55:12] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 20:55:18] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 21:52:27] Ecowitt: dane 5-min od 2026-11-12 20:15 UTC
+[2026-11-12 21:52:28]    5min 2026-11-12 21:15 → 2026-11-12 22:52: 18 pomiarów (co 5 min)
+[2026-11-12 21:52:30] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 21:52:34] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 22:52:35] Ecowitt: dane 5-min od 2026-11-12 21:10 UTC
+[2026-11-12 22:52:35]    5min 2026-11-12 22:10 → 2026-11-12 23:52: 19 pomiarów (co 5 min)
+[2026-11-12 22:52:37] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 22:52:41] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-12 23:49:15] Ecowitt: dane 5-min od 2026-11-12 22:10 UTC
+[2026-11-12 23:49:16]    5min 2026-11-12 23:10 → 2026-11-13 00:49: 19 pomiarów (co 5 min)
+[2026-11-12 23:49:18] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-12 23:49:24] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 01:14:22] Ecowitt: dane 5-min od 2026-11-12 23:10 UTC
+[2026-11-13 01:14:23]    5min 2026-11-13 00:10 → 2026-11-13 02:14: 24 pomiarów (co 5 min)
+[2026-11-13 01:14:25] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 01:14:32] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 02:12:15] Ecowitt: dane 5-min od 2026-11-13 00:35 UTC
+[2026-11-13 02:12:16]    5min 2026-11-13 01:35 → 2026-11-13 03:12: 18 pomiarów (co 5 min)
+[2026-11-13 02:12:18] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 02:12:22] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 02:53:21] Ecowitt: dane 5-min od 2026-11-13 01:30 UTC
+[2026-11-13 02:53:22]    5min 2026-11-13 02:30 → 2026-11-13 03:53: 15 pomiarów (co 5 min)
+[2026-11-13 02:53:24] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 02:53:27] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 03:57:50] Ecowitt: dane 5-min od 2026-11-13 02:10 UTC
+[2026-11-13 03:57:51]    5min 2026-11-13 03:10 → 2026-11-13 04:57: 20 pomiarów (co 5 min)
+[2026-11-13 03:57:53] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 03:57:59] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 05:03:55] Ecowitt: dane 5-min od 2026-11-13 03:15 UTC
+[2026-11-13 05:03:56]    5min 2026-11-13 04:15 → 2026-11-13 06:03: 21 pomiarów (co 5 min)
+[2026-11-13 05:03:58] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 05:04:04] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 06:04:46] Ecowitt: dane 5-min od 2026-11-13 04:25 UTC
+[2026-11-13 06:04:46]    5min 2026-11-13 05:25 → 2026-11-13 07:04: 19 pomiarów (co 5 min)
+[2026-11-13 06:04:48] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 06:04:52] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 07:21:49] Ecowitt: dane 5-min od 2026-11-13 05:25 UTC
+[2026-11-13 07:21:49]    5min 2026-11-13 06:25 → 2026-11-13 08:21: 22 pomiarów (co 5 min)
+[2026-11-13 07:21:51] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 07:21:55] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 09:03:04] Ecowitt: dane 5-min od 2026-11-13 06:40 UTC
+[2026-11-13 09:03:05]    5min 2026-11-13 07:40 → 2026-11-13 10:03: 27 pomiarów (co 5 min)
+[2026-11-13 09:03:07] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 09:03:11] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 10:04:29] Ecowitt: dane 5-min od 2026-11-13 08:20 UTC
+[2026-11-13 10:04:29]    5min 2026-11-13 09:20 → 2026-11-13 11:04: 20 pomiarów (co 5 min)
+[2026-11-13 10:04:31] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 10:04:35] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 11:05:47] Ecowitt: dane 5-min od 2026-11-13 09:25 UTC
+[2026-11-13 11:05:48]    5min 2026-11-13 10:25 → 2026-11-13 12:05: 19 pomiarów (co 5 min)
+[2026-11-13 11:05:50] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 11:05:53] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 11:59:56] Ecowitt: dane 5-min od 2026-11-13 10:25 UTC
+[2026-11-13 11:59:57]    5min 2026-11-13 11:25 → 2026-11-13 12:59: 18 pomiarów (co 5 min)
+[2026-11-13 11:59:59] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 12:00:04] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 13:12:52] Ecowitt: dane 5-min od 2026-11-13 11:20 UTC
+[2026-11-13 13:12:53]    5min 2026-11-13 12:20 → 2026-11-13 14:12: 21 pomiarów (co 5 min)
+[2026-11-13 13:12:55] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 13:13:00] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 14:22:34] Ecowitt: dane 5-min od 2026-11-13 12:30 UTC
+[2026-11-13 14:22:35]    5min 2026-11-13 13:30 → 2026-11-13 15:22: 21 pomiarów (co 5 min)
+[2026-11-13 14:22:37] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 14:22:37] IMGW: pobieram dane dobowe synop dla SZCZECIN
+[2026-11-13 14:22:58] IMGW: 13088 dób (1991-01-01 – 2026-10-31)
+[2026-11-13 14:23:02] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 15:54:20] Ecowitt: dane 5-min od 2026-11-13 13:40 UTC
+[2026-11-13 15:54:21]    5min 2026-11-13 14:40 → 2026-11-13 16:54: 26 pomiarów (co 5 min)
+[2026-11-13 15:54:23] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 15:54:26] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 16:59:01] Ecowitt: dane 5-min od 2026-11-13 15:15 UTC
+[2026-11-13 16:59:02]    5min 2026-11-13 16:15 → 2026-11-13 17:59: 20 pomiarów (co 5 min)
+[2026-11-13 16:59:04] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 16:59:08] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 17:56:01] Ecowitt: dane 5-min od 2026-11-13 16:20 UTC
+[2026-11-13 17:56:02]    5min 2026-11-13 17:20 → 2026-11-13 18:56: 18 pomiarów (co 5 min)
+[2026-11-13 17:56:04] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 17:56:10] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 18:57:44] Ecowitt: dane 5-min od 2026-11-13 17:15 UTC
+[2026-11-13 18:57:45]    5min 2026-11-13 18:15 → 2026-11-13 19:57: 19 pomiarów (co 5 min)
+[2026-11-13 18:57:47] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 18:57:53] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 19:58:54] Ecowitt: dane 5-min od 2026-11-13 18:15 UTC
+[2026-11-13 19:58:55]    5min 2026-11-13 19:15 → 2026-11-13 20:58: 20 pomiarów (co 5 min)
+[2026-11-13 19:58:57] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 19:59:03] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 20:57:03] Ecowitt: dane 5-min od 2026-11-13 19:20 UTC
+[2026-11-13 20:57:04]    5min 2026-11-13 20:20 → 2026-11-13 21:57: 18 pomiarów (co 5 min)
+[2026-11-13 20:57:06] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 20:57:09] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 21:51:59] Ecowitt: dane 5-min od 2026-11-13 20:15 UTC
+[2026-11-13 21:51:59]    5min 2026-11-13 21:15 → 2026-11-13 22:51: 15 pomiarów (co 5 min)
+[2026-11-13 21:52:01] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 21:52:04] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 22:50:03] Ecowitt: dane 5-min od 2026-11-13 21:10 UTC
+[2026-11-13 22:50:04]    5min 2026-11-13 22:10 → 2026-11-13 23:50: 18 pomiarów (co 5 min)
+[2026-11-13 22:50:06] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 22:50:10] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-13 23:45:13] Ecowitt: dane 5-min od 2026-11-13 22:10 UTC
+[2026-11-13 23:45:14]    5min 2026-11-13 23:10 → 2026-11-14 00:45: 18 pomiarów (co 5 min)
+[2026-11-13 23:45:16] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-13 23:45:19] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 01:05:36] Ecowitt: dane 5-min od 2026-11-13 23:05 UTC
+[2026-11-14 01:05:37]    5min 2026-11-14 00:05 → 2026-11-14 02:05: 23 pomiarów (co 5 min)
+[2026-11-14 01:05:39] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 01:05:43] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 02:08:09] Ecowitt: dane 5-min od 2026-11-14 00:25 UTC
+[2026-11-14 02:08:10]    5min 2026-11-14 01:25 → 2026-11-14 03:08: 19 pomiarów (co 5 min)
+[2026-11-14 02:08:12] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 02:08:18] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 02:55:53] Ecowitt: dane 5-min od 2026-11-14 01:25 UTC
+[2026-11-14 02:55:54]    5min 2026-11-14 02:25 → 2026-11-14 03:55: 17 pomiarów (co 5 min)
+[2026-11-14 02:55:56] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 02:56:02] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 03:56:05] Ecowitt: dane 5-min od 2026-11-14 02:15 UTC
+[2026-11-14 03:56:06]    5min 2026-11-14 03:15 → 2026-11-14 04:56: 19 pomiarów (co 5 min)
+[2026-11-14 03:56:08] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 03:56:11] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 04:57:49] Ecowitt: dane 5-min od 2026-11-14 03:15 UTC
+[2026-11-14 04:57:50]    5min 2026-11-14 04:15 → 2026-11-14 05:57: 19 pomiarów (co 5 min)
+[2026-11-14 04:57:52] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 04:57:58] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 05:55:06] Ecowitt: dane 5-min od 2026-11-14 04:15 UTC
+[2026-11-14 05:55:07]    5min 2026-11-14 05:15 → 2026-11-14 06:55: 19 pomiarów (co 5 min)
+[2026-11-14 05:55:09] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 05:55:12] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 07:04:41] Ecowitt: dane 5-min od 2026-11-14 05:15 UTC
+[2026-11-14 07:04:41]    5min 2026-11-14 06:15 → 2026-11-14 08:04: 21 pomiarów (co 5 min)
+[2026-11-14 07:04:43] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 07:04:46] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 08:07:53] Ecowitt: dane 5-min od 2026-11-14 06:25 UTC
+[2026-11-14 08:07:54]    5min 2026-11-14 07:25 → 2026-11-14 09:07: 19 pomiarów (co 5 min)
+[2026-11-14 08:07:56] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 08:08:02] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 08:55:56] Ecowitt: dane 5-min od 2026-11-14 07:25 UTC
+[2026-11-14 08:55:57]    5min 2026-11-14 08:25 → 2026-11-14 09:55: 17 pomiarów (co 5 min)
+[2026-11-14 08:55:59] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 08:56:03] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 09:51:22] Ecowitt: dane 5-min od 2026-11-14 08:15 UTC
+[2026-11-14 09:51:22]    5min 2026-11-14 09:15 → 2026-11-14 10:51: 18 pomiarów (co 5 min)
+[2026-11-14 09:51:24] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 09:51:31] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 10:49:02] Ecowitt: dane 5-min od 2026-11-14 09:10 UTC
+[2026-11-14 10:49:04]    5min 2026-11-14 10:10 → 2026-11-14 11:49: 19 pomiarów (co 5 min)
+[2026-11-14 10:49:06] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 10:49:06] IMGW: pobieram dane dobowe synop dla SZCZECIN
+[2026-11-14 10:49:23] IMGW: 13088 dób (1991-01-01 – 2026-10-31)
+[2026-11-14 10:49:27] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 11:45:39] Ecowitt: dane 5-min od 2026-11-14 10:10 UTC
+[2026-11-14 11:45:39]    5min 2026-11-14 11:10 → 2026-11-14 12:45: 18 pomiarów (co 5 min)
+[2026-11-14 11:45:41] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 11:45:45] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 12:55:27] Ecowitt: dane 5-min od 2026-11-14 11:05 UTC
+[2026-11-14 12:55:27]    5min 2026-11-14 12:05 → 2026-11-14 13:55: 21 pomiarów (co 5 min)
+[2026-11-14 12:55:29] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 12:55:33] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 13:56:26] Ecowitt: dane 5-min od 2026-11-14 12:15 UTC
+[2026-11-14 13:56:27]    5min 2026-11-14 13:15 → 2026-11-14 14:56: 19 pomiarów (co 5 min)
+[2026-11-14 13:56:29] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 13:56:33] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 14:48:12] Ecowitt: dane 5-min od 2026-11-14 13:15 UTC
+[2026-11-14 14:48:13]    5min 2026-11-14 14:15 → 2026-11-14 15:48: 17 pomiarów (co 5 min)
+[2026-11-14 14:48:15] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 14:48:21] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 15:45:11] Ecowitt: dane 5-min od 2026-11-14 14:05 UTC
+[2026-11-14 15:45:12]    5min 2026-11-14 15:05 → 2026-11-14 16:45: 19 pomiarów (co 5 min)
+[2026-11-14 15:45:14] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 15:45:17] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 16:47:08] Ecowitt: dane 5-min od 2026-11-14 15:05 UTC
+[2026-11-14 16:47:09]    5min 2026-11-14 16:05 → 2026-11-14 17:47: 19 pomiarów (co 5 min)
+[2026-11-14 16:47:11] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 16:47:15] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
+[2026-11-14 17:42:28] Ecowitt: dane 5-min od 2026-11-14 16:05 UTC
+[2026-11-14 17:42:29]    5min 2026-11-14 17:05 → 2026-11-14 18:42: 18 pomiarów (co 5 min)
+[2026-11-14 17:42:31] IMGW: najbliższa stacja synoptyczna SZCZECIN (9 km)
+[2026-11-14 17:42:34] Dashboard: /home/runner/work/stacja-pogodowa/stacja-pogodowa/strona/index.html (1.8 MB)
