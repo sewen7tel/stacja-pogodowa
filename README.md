@@ -15,3 +15,8 @@ Klucze API są w sekretach repozytorium (Settings → Secrets and variables → 
 `ECOWITT_APP_KEY`, `ECOWITT_API_KEY`, `ECOWITT_MAC`. Nie ma ich w żadnym pliku.
 
 Ręczne odświeżenie: zakładka **Actions**, potem **Stacja pogodowa**, potem **Run workflow**.
+
+## Zabezpieczenie strony
+Strona jest szyfrowana (AES-256) kluczem z sekretu `STRONA_KLUCZ`. Otwierasz ją linkiem z kluczem:
+`https://sewen7tel.github.io/stacja-pogodowa/#k=KLUCZ` albo wpisujesz klucz jako hasło.
+Zmiana klucza: zmień sekret `STRONA_KLUCZ` i uruchom automat (Actions → Run workflow). Stare linki przestaną działać.

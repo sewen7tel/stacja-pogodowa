@@ -42,7 +42,7 @@ jobs:
           cache: pip
           cache-dependency-path: .github/workflows/stacja.yml
 
-      - run: pip install requests pandas tzdata
+      - run: pip install requests pandas tzdata cryptography
 
       - name: Synchronizacja i dashboard
         env:
@@ -88,6 +88,13 @@ jobs:
 
       - name: Sprawdź, czy strona powstała
         run: test -f strona/index.html || { echo "::error::Nie powstał dashboard – zobacz ostrzeżenia powyżej"; exit 1; }
+
+      - name: Zaszyfruj stronę (klucz z sekretu STRONA_KLUCZ)
+        env:
+          STRONA_KLUCZ: ${{ secrets.STRONA_KLUCZ }}
+        run: |
+          python szyfruj.py strona/index.html
+          printf 'User-agent: *\nDisallow: /\n' > strona/robots.txt
 
       - uses: actions/upload-pages-artifact@v3
         with:
