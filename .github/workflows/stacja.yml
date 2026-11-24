@@ -22,7 +22,7 @@ jobs:
     timeout-minutes: 40
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deploy1.outputs.page_url || steps.deploy2.outputs.page_url || steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -96,9 +96,27 @@ jobs:
           python szyfruj.py strona/index.html
           printf 'User-agent: *\nDisallow: /\n' > strona/robots.txt
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: strona
 
+      # GitHub czasem nie widzi świeżo wgranej paczki strony („No artifacts named github-pages”) –
+      # wtedy czekamy chwilę i próbujemy jeszcze dwa razy.
+      - id: deploy1
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - if: steps.deploy1.outcome == 'failure'
+        run: sleep 45
+
+      - id: deploy2
+        if: steps.deploy1.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        run: sleep 90
+
       - id: deploy
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
         uses: actions/deploy-pages@v4
